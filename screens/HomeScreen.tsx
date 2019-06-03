@@ -1,16 +1,15 @@
 import React from 'react';
 import {
-  Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import { Constants } from 'expo';
 
-import { MonoText } from '../components/StyledText';
+import Colors from '../constants/Colors';
+import CommonStyle from '../styles/CommonStyle';
+import { StyledButton } from '../components/StyledButton';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -20,89 +19,44 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
+        {/* <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}> */}
+          <View>
+            <Text style={[CommonStyle.centerText, styles.titleText]}>Welcome to Trivia Challenge!</Text>
           </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            {/* <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View> */}
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
+          <View>
+            <Text style={[CommonStyle.centerText]}>You will be presented with 10 True or False questions.</Text>
           </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
+          <View>
+            <Text style={[CommonStyle.centerText]}>Can you score 100%?</Text>
           </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            {/* <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText> */}
-          </View>
-        </View>
+          <StyledButton 
+            title='Begin'
+            onPress={(s) => {console.log('begin')}}
+          />
+        {/* </ScrollView> */}
       </View>
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.genericBackground,
+    alignContent: "center",
+    justifyContent: 'space-between',
+    paddingTop: Constants.statusBarHeight,
   },
+  titleContainer: {
+    textAlign: "center",
+  },
+  titleText: {
+    textAlign: "center",
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
+
   developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',

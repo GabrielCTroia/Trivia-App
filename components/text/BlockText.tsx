@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Text, StyleSheet, View, TextProperties } from 'react-native';
 
-export interface BlockedTextProps extends TextProperties { };
+export interface BlockTextProps extends TextProperties { };
 
 /**
  * This is a simple text inside a View.
  * Similar to <p>, <h1>, <h2>, etc...
  */
-export class BlockedText extends React.Component<TextProperties> {
+export class BlockText extends React.Component<BlockTextProps> {
   render() {
     const { style, ...restProps } = this.props;
 

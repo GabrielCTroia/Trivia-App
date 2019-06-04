@@ -1,7 +1,7 @@
 const tintColor = '#2f95dc' as string || '';
 
 export default {
-  genericBackground: '#ededed' as string || '',
+  genericBackground: '#cccccc' as string || '',
   tintColor,
   tabIconDefault: '#ccc' as string || '',
   tabIconSelected: tintColor,

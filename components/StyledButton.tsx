@@ -15,11 +15,12 @@ interface IProps extends TouchableOpacityProps {
 
 export class StyledButton extends React.Component<IProps> {
   render() {
-    return (<TouchableOpacity onPress={this.props.onPress}>
-      <View style={[styles.container, this.props.style]}>
-        <Text style={styles.text}>{this.props.title}</Text>
-      </View>
-    </TouchableOpacity>
+    return (
+      <TouchableOpacity onPress={this.props.onPress}>
+        <View style={[styles.container, this.props.style]}>
+          <Text style={styles.text}>{this.props.title}</Text>
+        </View>
+      </TouchableOpacity>
     )
   }
 }

@@ -1,19 +1,17 @@
 import React from 'react';
 import {
-  Platform,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { Constants } from 'expo';
 
 import Colors from '../constants/Colors';
 import CommonStyle from '../styles/CommonStyle';
-import { StyledButton } from '../components/StyledButton';
+import { StyledButton } from '../components/buttons/StyledButton';
 import { Title } from '../components/text/Title';
 import { Paragraph } from '../components/text/Paragraph';
 
-export default class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };

@@ -1,18 +1,38 @@
 import React from 'react';
-import { Button, ButtonProps, StyleSheet } from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+  TouchableOpacityProps,
+  Text,
+} from 'react-native';
 
-// export class Button extends React.Component {
-//   render() {
-//     return <Text {...this.props} style={[this.props.style, { fontFamily: 'space-mono' }]} />;
-//   }
-// }
+interface IProps extends TouchableOpacityProps {
+  title: string;
+  style?: ViewStyle,
+}
 
-export const StyledButton = (props: ButtonProps) => (
-    <Button  {...props} />
-)
+export class StyledButton extends React.Component<IProps> {
+  render() {
+    return (<TouchableOpacity onPress={this.props.onPress}>
+      <View style={[styles.container, this.props.style]}>
+        <Text style={styles.text}>{this.props.title}</Text>
+      </View>
+    </TouchableOpacity>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
-   container: {
+  container: {
+    padding: 10,
+    alignContent: 'center',
+  },
 
-   },
-});
+  text: {
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    fontSize: 20,
+  }
+})

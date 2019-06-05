@@ -8,18 +8,29 @@ import { Constants } from 'expo';
 import Colors from '../constants/Colors';
 import CommonStyle from '../styles/CommonStyle';
 import { StyledButton } from '../components/buttons/StyledButton';
-import { Title } from '../components/text/Title';
 import { Paragraph } from '../components/text/Paragraph';
+import { H1 } from '../components/text/H1';
+import { H2 } from '../components/text/H2';
+import { NavigationScreenProp } from 'react-navigation';
 
-export class HomeScreen extends React.Component {
+export interface HomeScreenProps {
+  navigation: NavigationScreenProp<any, any>;
+}
+
+export class HomeScreen extends React.Component<HomeScreenProps> {
   static navigationOptions = {
     header: null,
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
-        <Title>Welcome to Trivia Challenge!</Title>
+        <View>
+          <H1 style={{ color: Colors.noticeTextInverted }}>Welcome to</H1>
+          <H2 style={{ color: Colors.noticeText }}>Trivia Challenge</H2>
+        </View>
         <Paragraph style={CommonStyle.centerText}>
           You will be presented with 10 True or False questions.
         </Paragraph>
@@ -28,7 +39,7 @@ export class HomeScreen extends React.Component {
         </Paragraph>
         <StyledButton
           title="Begin"
-          onPress={(s) => { console.log(s) }}
+          onPress={() => { navigate('Quiz') }}
         />
       </View>
     );

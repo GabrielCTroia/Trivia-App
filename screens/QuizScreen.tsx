@@ -6,34 +6,9 @@ import {
 import { Constants } from 'expo';
 
 import Colors from '../constants/Colors';
-import CommonStyle from '../styles/CommonStyle';
-import { StyledButton } from '../components/buttons/StyledButton';
-import { Title } from '../components/text/Title';
-import { Paragraph } from '../components/text/Paragraph';
 import { NavigationScreenProp } from 'react-navigation';
-
-// enum QuestionDiffuculty {
-//   easy,
-//   hard,
-// }
-
-// export class Question {
-//   public title: string;
-//   public difficulty: QuestionDiffuculty;
-//   public correctAnswer: boolean;
-
-//   constructor({}) {
-
-//   }
-// }
-
-// export class Answer {
-//   public isCorrect: boolean;
-
-//   constructor(public question: Question, answered: boolean) {
-//     this.isCorrect = question.
-//   }
-// }
+import { QuestionBox } from '../components/QuestionBox';
+import { Question } from '../Api/Questions';
 
 export interface QuizScreenParams {
   category: string;
@@ -50,44 +25,23 @@ export interface QuizScreenProps {
 }
 
 
-
-// const passedProps: QuizScreenProps = {
-//   category: 'Entertainment',
-//   topic: 'Video Games',
-
-//   questions: [
-//     {
-//       title: 'Is that you Mario?',
-//       correctAnswer: true,
-//     }
-//   ]
-// }
-
-
 export class QuizScreen extends React.Component<QuizScreenProps> {
   static navigationOptions = {
     header: null,
   };
 
   render() {
-    // const x = this.props.navigation.state
-    console.log('navigation', this.props.navigation);
+    const { questions = [] } = this.props.navigation.state.params || {};
 
     return (
       <View style={styles.container}>
-        <Title>Welcome to Trivia Challenge!</Title>
-        <Paragraph style={CommonStyle.centerText}>
-          You will be presented with 10 True or False questions.
-        </Paragraph>
-        <Paragraph style={CommonStyle.centerText}>
-          Can you score 100%?
-        </Paragraph>
-        <StyledButton
-          title="Begin"
-          onPress={(s) => { console.log(s) }}
-        />
+        {this.renderQuestions(questions)}
       </View>
     );
+  }
+
+  private renderQuestions(questions: Question[]) {
+    return questions.map((q, i) => <QuestionBox question={q} key={i}/>)
   }
 
 }

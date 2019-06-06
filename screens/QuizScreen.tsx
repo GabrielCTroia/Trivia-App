@@ -12,7 +12,6 @@ import { Question } from '../Api/Questions';
 
 export interface QuizScreenParams {
   category: string;
-  topic: string;
 
   questions: {
     title: string;

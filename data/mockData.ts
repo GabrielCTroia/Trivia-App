@@ -41,5 +41,15 @@ export const data = {
         "False"
       ]
     },
+    {
+      "category": "Entertainment: Movies",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Tony stark is Iron Man!",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
   ]
 };

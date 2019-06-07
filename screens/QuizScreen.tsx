@@ -1,11 +1,6 @@
 import React from 'react';
 import R from 'ramda';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-} from 'react-native';
+import { StyleSheet, View, } from 'react-native';
 import { Constants } from 'expo';
 
 import Colors from '../constants/Colors';
@@ -14,15 +9,10 @@ import { QuestionBox } from '../components/QuestionBox';
 import { Question } from '../Api/Questions';
 import { Title } from '../components/text/Title';
 import { CardStack } from '../components/CardStack';
-import { Card } from '../components/Card';
 
 export interface QuizScreenParams {
   category: string;
-
-  questions: {
-    title: string;
-    correctAnswer: boolean;
-  }[],
+  questions: Question[],
 }
 
 interface Answer {
@@ -31,8 +21,8 @@ interface Answer {
 }
 
 interface State {
-  givenAnswersByIndex: { [k: number]: boolean };
-  unansweredQuestions: Question[];
+  givenAnswersById: { [k: string]: boolean };
+  // unansweredQuestions: Question[];
   // currentQuestionIndex: number;
 }
 
@@ -49,37 +39,27 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
   constructor(props: QuizScreenProps) {
     super(props);
 
-    const { questions = [] } = this.props.navigation.state.params;
-
     this.state = {
       // currentQuestionIndex: questions.length > 0 ? 0 : -1,
-      givenAnswersByIndex: {},
-      unansweredQuestions: questions,
+      givenAnswersById: {},
+      // unansweredQuestions: questions,
     }
   }
 
   private renderQuestions() {
-    const questionCards = this.state.unansweredQuestions.map((q, i) => (
-      <Card key={q.id}>
-        <QuestionBox question={q} />
-      </Card>
-    ));
+    // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
+    // Temporary solution: Manually annotate for now!
+    const questions: Question[] = this.props.navigation.state.params.questions || [];
 
-    return <CardStack style={styles.questionsContainer} cards={questionCards} />;
-  }
+    const mapCardsToIds = R.map((q) => ({
+      id: q.id,
+      card: <QuestionBox question={q} />,
+    }), questions);
 
-  private answerQuestion(index: number, answer: boolean) {
-    const start = this.state.unansweredQuestions.slice(0, index);
-    const end = this.state.unansweredQuestions.slice(index + 1);
-
-    this.setState({
-      givenAnswersByIndex: R.merge(this.state.givenAnswersByIndex, {
-        [index]: answer,
-      }),
-      unansweredQuestions: start.concat(end),
-    }, () => {
-      console.log('next state', this.state);
-    });
+    return <CardStack
+      style={styles.questionsContainer}
+      cardWithIdMaps={mapCardsToIds}
+    />;
   }
 
   render() {

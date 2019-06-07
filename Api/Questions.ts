@@ -1,6 +1,6 @@
 import { fetch } from "../data/fetch";
 import R from 'ramda';
-import hasPath from "ramda/es/hasPath";
+import md5 from "md5";
 
 export type Question = {
   id: string,
@@ -9,17 +9,19 @@ export type Question = {
   correctAnswer: boolean;
 }
 
-const getUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
+const normalize = (raw: any): Question => {
+  const title = raw.question as string || '';
 
-const normalize = (raw: any): Question => ({
-  // Generate a unique id to each question to make it easier to handle UI
-  id: getUniqueId(),
-  category: raw.category as string || '',
-  title: raw.question as string || '',
-  correctAnswer: raw.correct_answer as boolean || false,
-});
+  return {
+    // Create a uniq id based on the question's content
+    // This will make handling UI easier.
+    id: md5(title),
 
-const mapWithIndex = R.addIndex(R.map);
+    title,
+    category: raw.category as string || '',
+    correctAnswer: raw.correct_answer as boolean || false,
+  }
+};
 
 export const getQuestions = () => fetch().then(R.map(normalize))
 

@@ -9,6 +9,7 @@ import { QuestionBox } from '../components/QuestionBox';
 import { Question } from '../Api/Questions';
 import { Title } from '../components/text/Title';
 import { CardStack } from '../components/CardStack';
+import { StyledButton } from '../components/buttons/StyledButton';
 
 export interface QuizScreenParams {
   category: string;
@@ -22,14 +23,12 @@ interface Answer {
 
 interface State {
   givenAnswersById: { [k: string]: boolean };
-  // unansweredQuestions: Question[];
-  // currentQuestionIndex: number;
+  quizEnded: boolean;
 }
 
 export interface QuizScreenProps {
   navigation: NavigationScreenProp<any, QuizScreenParams>;
 }
-
 
 export class QuizScreen extends React.Component<QuizScreenProps, State> {
   static navigationOptions = {
@@ -40,10 +39,17 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
     super(props);
 
     this.state = {
-      // currentQuestionIndex: questions.length > 0 ? 0 : -1,
       givenAnswersById: {},
-      // unansweredQuestions: questions,
+      quizEnded: false,
     }
+  }
+
+  private answer(questionId: string, option: boolean) {
+    this.setState({
+      givenAnswersById: R.merge(this.state.givenAnswersById, {
+        [questionId]: option,
+      }),
+    })
   }
 
   private renderQuestions() {
@@ -59,7 +65,18 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
     return <CardStack
       style={styles.questionsContainer}
       cardWithIdMaps={mapCardsToIds}
+      onSwipeLeft={(id) => this.answer(id, false)}
+      onSwipeRight={(id) => this.answer(id, true)}
+      onEnd={() => this.setState({ quizEnded: true })}
     />;
+  }
+
+  private renderResultsButton() {
+    if (!this.state.quizEnded) {
+      return null;
+    }
+
+    return <StyledButton title="See Results"></StyledButton>
   }
 
   render() {
@@ -69,6 +86,7 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
       <View style={styles.container}>
         <Title>{category}</Title>
         {this.renderQuestions()}
+        {this.renderResultsButton()}
       </View>
     );
   }
@@ -91,11 +109,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   questionsContainer: {
-    // width: '80%',
-    // flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'red',
     flex: .5,
 
     width: '80%',

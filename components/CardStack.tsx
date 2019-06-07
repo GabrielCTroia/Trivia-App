@@ -18,10 +18,12 @@ export type CardStackProps = ViewProps & {
 }
 
 export const CardStack: FunctionComponent<CardStackProps> = ({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = noop, ...props }) => {
-  const [cardsLeftCount, setCardsLeftCount] = useState(props.cardWithIdMaps.length);
+  const [cardsLeftCount, setCardsLeftCount] = useState(props.cardWithIdMaps.length - 1);
 
   const onSwipe = (dir: 'left' | 'right', id: string) => {
     setCardsLeftCount((prev) => prev - 1);
+
+    console.log('left', cardsLeftCount);
 
     if (dir === 'left') {
       onSwipeLeft(id);

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Text, StyleSheet, View, TextProperties } from 'react-native';
+import { Text, StyleSheet, View, TextProps } from 'react-native';
 
-export interface BlockTextProps extends TextProperties { };
+export interface BlockTextProps extends TextProps { };
 
 /**
  * This is a simple text inside a View.

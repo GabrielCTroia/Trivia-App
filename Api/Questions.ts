@@ -9,6 +9,16 @@ export type Question = {
   correctAnswer: boolean;
 }
 
+const stringToBoolean = (s: string) => {
+  switch (s.toLowerCase()) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default: return Boolean(s);
+  }
+}
+
 const normalize = (raw: any): Question => {
   const title = raw.question as string || '';
 
@@ -19,7 +29,7 @@ const normalize = (raw: any): Question => {
 
     title,
     category: raw.category as string || '',
-    correctAnswer: raw.correct_answer as boolean || false,
+    correctAnswer: stringToBoolean(String(raw.correct_answer)),
   }
 };
 

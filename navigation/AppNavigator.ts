@@ -2,6 +2,7 @@ import { createAppContainer, createSwitchNavigator, createStackNavigator } from 
 import { HomeScreen } from '../screens/HomeScreen';
 import { QuizScreen } from '../screens/QuizScreen';
 import { Easing, Animated } from 'react-native';
+import { ResultsScreen } from '../screens/ResultsScreen';
 
 const iosTransitionSpec = {
   duration: 500,
@@ -30,12 +31,9 @@ const transitionConfig = () => {
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-  Quiz: {
-    screen: QuizScreen,
-  },
-}, {
-    transitionConfig,
-  });
+  Quiz: QuizScreen,
+  Results: ResultsScreen,
+}, { transitionConfig });
 
 export default createAppContainer(createSwitchNavigator({
   Main: HomeStack,

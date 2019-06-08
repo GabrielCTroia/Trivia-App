@@ -2,7 +2,6 @@ import React from 'react';
 import R from 'ramda';
 import { StyleSheet, View, } from 'react-native';
 import { Constants } from 'expo';
-
 import Colors from '../constants/Colors';
 import { NavigationScreenProp } from 'react-navigation';
 import { QuestionBox } from '../components/QuestionBox';
@@ -10,24 +9,21 @@ import { Question } from '../Api/Questions';
 import { Title } from '../components/text/Title';
 import { CardStack } from '../components/CardStack';
 import { StyledButton } from '../components/buttons/StyledButton';
+import { AnsweredQuestion } from '../components/AnsweredQuestionItem';
+
 
 export interface QuizScreenParams {
   category: string;
   questions: Question[],
 }
 
-interface Answer {
-  to: Question;
-  correctness: boolean;
+export interface QuizScreenProps {
+  navigation: NavigationScreenProp<any, QuizScreenParams>;
 }
 
 interface State {
   givenAnswersById: { [k: string]: boolean };
   quizEnded: boolean;
-}
-
-export interface QuizScreenProps {
-  navigation: NavigationScreenProp<any, QuizScreenParams>;
 }
 
 export class QuizScreen extends React.Component<QuizScreenProps, State> {
@@ -45,11 +41,26 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
   }
 
   private answer(questionId: string, option: boolean) {
+    // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
+    // Temporary solution: Manually annotate for now!
+    const questions: Question[] = this.props.navigation.state.params.questions || [];
+
+    const nextAnsweresById = R.merge(this.state.givenAnswersById, {
+      [questionId]: option,
+    });
+
     this.setState({
-      givenAnswersById: R.merge(this.state.givenAnswersById, {
-        [questionId]: option,
-      }),
-    })
+      givenAnswersById: nextAnsweresById,
+      quizEnded: R.keys(nextAnsweresById).length === questions.length,
+    });
+  }
+
+  private getAnsweredQuestions(): AnsweredQuestion[] {
+    // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
+    // Temporary solution: Manually annotate for now!
+    const questions: Question[] = this.props.navigation.state.params.questions || [];
+
+    return questions.map((q) => ({ ...q, givenAnswer: this.state.givenAnswersById[q.id] }))
   }
 
   private renderQuestions() {
@@ -57,17 +68,19 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
     // Temporary solution: Manually annotate for now!
     const questions: Question[] = this.props.navigation.state.params.questions || [];
 
+    const onlyUnanswered = R.filter((q: Question) => this.state.givenAnswersById[q.id] === undefined);
+
     const mapCardsToIds = R.map((q) => ({
       id: q.id,
       card: <QuestionBox question={q} />,
-    }), questions);
+    }), onlyUnanswered(questions));
+
 
     return <CardStack
       style={styles.questionsContainer}
       cardWithIdMaps={mapCardsToIds}
       onSwipeLeft={(id) => this.answer(id, false)}
       onSwipeRight={(id) => this.answer(id, true)}
-      onEnd={() => this.setState({ quizEnded: true })}
     />;
   }
 
@@ -76,7 +89,12 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
       return null;
     }
 
-    return <StyledButton title="See Results"></StyledButton>
+    return <StyledButton
+      title="See Results"
+      onPress={() => this.props.navigation.navigate('Results', {
+        answeredQuestions: this.getAnsweredQuestions(),
+      })}
+    />
   }
 
   render() {
@@ -98,9 +116,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.noticeBackground,
     alignContent: "center",
-    // justifyContent: 'center',
-
-    // justifyContent: 'space-evenly',
     paddingTop: Constants.statusBarHeight,
   },
   titleText: {

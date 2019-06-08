@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, Animated, PanResponder, ViewProps } from 'react-native';
-import Colors from '../styles/Colors';
 
 type VoidFunction = () => void;
 

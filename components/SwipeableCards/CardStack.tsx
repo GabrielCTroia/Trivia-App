@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import R from 'ramda';
 import { View, StyleSheet, ViewProps } from "react-native";
 import { Card } from "./Card";
 
@@ -32,9 +33,12 @@ export function CardStack<T>({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = 
     }
   }
 
+  // Limit the number of items rendered at once
+  const firstItems = R.take(2, props.items);
+
   return (
     <View style={[styles.container, props.style]}>
-      {props.items.map((item) => {
+      {firstItems.reverse().map((item) => {
         const key = props.keyExtractor(item);
         return (
           <Card

@@ -2,14 +2,14 @@ import React from 'react';
 import R from 'ramda';
 import { StyleSheet, View, } from 'react-native';
 import { Constants } from 'expo';
-import Colors from '../constants/Colors';
+import * as Colors from '../styles/Colors';
 import { NavigationScreenProp } from 'react-navigation';
 import { QuestionBox } from '../components/QuestionBox';
 import { Question } from '../Api/Questions';
-import { Title } from '../components/text/Title';
 import { CardStack } from '../components/CardStack';
 import { StyledButton } from '../components/buttons/StyledButton';
 import { AnsweredQuestion } from '../components/AnsweredQuestionItem';
+import { BlockText } from '../components/text/BlockText';
 
 
 export interface QuizScreenParams {
@@ -100,11 +100,16 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
   render() {
     const { category = '' } = this.props.navigation.state.params || {};
 
+    const [topic, subtopic] = category.split(':');
+
     return (
       <View style={styles.container}>
-        <Title>{category}</Title>
-        {this.renderQuestions()}
-        {this.renderResultsButton()}
+        <View style={styles.quiz}>
+          <BlockText style={styles.header}>{topic}</BlockText>
+          <BlockText style={styles.subheader}>{subtopic}</BlockText>
+          {this.renderQuestions()}
+          {this.renderResultsButton()}
+        </View>
       </View>
     );
   }
@@ -114,14 +119,27 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.noticeBackground,
+    backgroundColor: Colors.backgroundColor,
     alignContent: "center",
-    paddingTop: Constants.statusBarHeight,
   },
-  titleText: {
-    textAlign: "center",
+  quiz: {
+    flex: .9,
+    backgroundColor: Colors.foregroundColor,
+    paddingTop: Constants.statusBarHeight,
+    borderBottomLeftRadius: 45,
+    borderBottomRightRadius: 45,
+  },
+  header: {
+    // textAlign: "center",
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#F2C94C',
+  },
+  subheader: {
+    // textAlign: "center",
     fontSize: 25,
     fontWeight: 'bold',
+    color: '#21357C',
   },
   questionsContainer: {
     alignItems: 'center',

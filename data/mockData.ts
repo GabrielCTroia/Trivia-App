@@ -42,6 +42,26 @@ export const data = {
       ]
     },
     {
+      "category": "Entertainment: Video Games",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Counter Strike is not a shooter game",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "You can fly in FortNight",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
+    {
       "category": "Entertainment: Movies",
       "type": "boolean",
       "difficulty": "hard",

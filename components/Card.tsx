@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Animated, PanResponder, ViewProps } from 'react-native';
-import Colors from '../constants/Colors';
+import Colors from '../styles/Colors';
 
 type VoidFunction = () => void;
 
@@ -90,7 +90,7 @@ export class Card extends React.Component<CardProps, State> {
         inputRange: [-150, 0, 150],
         outputRange: ["-20deg", "0deg", "20deg"]
       }),
-      opacity: pan.x.interpolate({ inputRange: [-150, 0, 150], outputRange: [0, 1, 0] })
+      opacity: pan.x.interpolate({ inputRange: [-250, 0, 250], outputRange: [0, 1, 0] })
     };
   }
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Colors from '../constants/Colors';
+import * as Colors from '../styles/Colors';
 import { H2 } from '../components/text/H2';
 import { NavigationScreenProp, FlatList } from 'react-navigation';
 import { AnsweredQuestionItem, AnsweredQuestion } from '../components/AnsweredQuestionItem';
 import { StyledButton } from '../components/buttons/StyledButton';
+import { Constants } from 'expo';
 
 
 export interface ResultsScreenParams {
@@ -33,7 +34,7 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
 
     return (
       <View style={styles.container}>
-        <View style={styles.quizOutro}></View>
+        {/* <View style={styles.quizOutro}></View> */}
 
         <View style={styles.main}>
           <H2>You scored {calculateScore(answeredQuestions)}%</H2>
@@ -57,15 +58,16 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.genericBackground,
+    backgroundColor: Colors.backgroundColor,
     flex: 1,
     alignContent: "center",
     justifyContent: 'space-between',
+    paddingTop: Constants.statusBarHeight,
   },
   questionsList: {},
   quizOutro: {
     flex: .2,
-    backgroundColor: Colors.noticeBackground,
+    backgroundColor: Colors.foregroundColor,
     borderBottomLeftRadius: 45,
     borderBottomRightRadius: 45,
 

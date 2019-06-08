@@ -2,19 +2,16 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
-import { Constants } from 'expo';
 
 import R from 'ramda';
-import Colors from '../constants/Colors';
-import CommonStyle from '../styles/CommonStyle';
+import * as Colors from '../styles/Colors';
 import { StyledButton } from '../components/buttons/StyledButton';
-import { Paragraph } from '../components/text/Paragraph';
-import { H1 } from '../components/text/H1';
-import { H2 } from '../components/text/H2';
 import { NavigationScreenProp } from 'react-navigation';
-import Layout from '../constants/Layout';
 import { getQuestionsByCategory, Question } from '../Api/Questions';
+import * as Typography from '../styles/Typography';
+import { screenLayout, screenVerticalPadding } from '../styles/Layout';
 
 export interface HomeScreenProps {
   navigation: NavigationScreenProp<any, any>;
@@ -37,6 +34,12 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     };
   }
 
+  // async componentDidMount() {
+  //   await this.fetchData();
+
+  //   this.navigateToQuizScreen(R.keys(this.state.questionsByCategories)[0].toString())
+  // }
+
   private async fetchData() {
     this.setState({
       questionsByCategories: await getQuestionsByCategory(),
@@ -52,7 +55,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     });
   }
 
-  private showCategoryList() {
+  private showCategories() {
     const categories = R.keys(this.state.questionsByCategories);
 
     if (categories.length === 0) {
@@ -62,9 +65,9 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     return (
       <View>
         {categories.map((c, i) => (
-          <StyledButton 
-            key={i} 
-            title={c.toString()} 
+          <StyledButton
+            key={i}
+            title={c.toString()}
             onPress={() => this.navigateToQuizScreen(c.toString())}
           />
         ))}
@@ -73,21 +76,19 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
   }
 
   render() {
-
-
     return (
       <View style={styles.container}>
         <View style={styles.main}>
           <View>
-            <H1 style={{ color: Colors.noticeTextInverted }}>Welcome to</H1>
-            <H2 style={{ color: Colors.noticeText }}>Trivia Challenge</H2>
+            <Text style={styles.header}>Welcome to</Text>
+            <Text style={styles.subheader}>Trivia Challenge</Text>
           </View>
-          <Paragraph style={CommonStyle.centerText}>
+          <Text style={styles.baseText}>
             You will be presented with 10 True or False questions.
-        </Paragraph>
-          <Paragraph style={CommonStyle.centerText}>
+          </Text>
+          <Text style={[styles.baseText, Typography.centeredText]}>
             Can you score 100%?
-        </Paragraph>
+          </Text>
         </View>
 
         <View style={styles.quizIntro}>
@@ -95,9 +96,8 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
             title="Begin"
             onPress={() => { this.fetchData() }}
           />
-          {this.showCategoryList()}
+          {this.showCategories()}
         </View>
-
       </View>
     );
   }
@@ -107,37 +107,47 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.genericBackground,
-    paddingTop: Constants.statusBarHeight,
+    backgroundColor: Colors.backgroundColor,
   },
-
   main: {
-    // flex: 1,
-    alignContent: "center",
+    ...screenLayout,
+    paddingBottom: screenVerticalPadding,
+
     justifyContent: 'space-between',
-    height: (Layout.window.height / 4) * 3,
 
+    flex: .85,
   },
-
-  titleText: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: 'bold',
+  header: {
+    ...Typography.headerText,
+    color: Colors.baseTextInvertedColor,
   },
-
+  subheader: {
+    ...Typography.subheaderText,
+    color: Colors.subheaderTextColor,
+  },
+  baseText: {
+    ...Typography.baseText,
+    color: Colors.baseTextInvertedColor,
+    fontSize: 24,
+  },
 
   quizIntro: {
     position: 'absolute',
-    // top: 0,
+    bottom: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    backgroundColor: Colors.noticeBackground,
-    // height: Layout.window.height / 4,
+
+    backgroundColor: Colors.foregroundColor,
+    padding: 20,
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
 
     alignContent: "center",
     justifyContent: 'space-evenly',
+
+    shadowColor: '#D0BD0F',
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    shadowOpacity: 1,
   }
 });

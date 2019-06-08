@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Question } from "../Api/Questions";
 import { View, Text, StyleSheet } from "react-native";
-import Colors from "../constants/Colors";
+import * as Colors from "../styles/Colors";
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -30,7 +30,7 @@ export const AnsweredQuestionItem: FunctionComponent<AnsweredQuestionItemProps> 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.noticeBackground,
+    backgroundColor: Colors.whiteColor,
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 20,
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
 
     flex: 1,
     flexDirection: 'row',
+
     shadowColor: '#D0BD0F',
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 10,

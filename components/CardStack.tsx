@@ -23,8 +23,6 @@ export const CardStack: FunctionComponent<CardStackProps> = ({ onSwipeLeft = noo
   const onSwipe = (dir: 'left' | 'right', id: string) => {
     setCardsLeftCount((prev) => prev - 1);
 
-    console.log('left', cardsLeftCount);
-
     if (dir === 'left') {
       onSwipeLeft(id);
     } else {

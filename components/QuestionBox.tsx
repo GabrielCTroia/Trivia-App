@@ -21,8 +21,17 @@ export const QuestionBox: React.FunctionComponent<QuestionBoxProps> = (props) =>
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#efefef',
+    backgroundColor: '#ffffff',
+
+    shadowColor: '#ededed',
+    shadowOffset: { width: 10, height: 10 },
+    shadowRadius: 10,
+    shadowOpacity: 1,
 
     flex: 1,
+
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

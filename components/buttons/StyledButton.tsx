@@ -1,39 +1,78 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
-  View,
   ViewStyle,
   TouchableOpacityProps,
   Text,
+  TextStyle,
 } from 'react-native';
+import * as Colors from '../../styles/Colors';
+import * as Effects from '../../styles/Effects';
 
-interface IProps extends TouchableOpacityProps {
+
+export enum ButtonTypes {
+  clear = 'clear',
+  success = 'success',
+  positive = 'positive',
+  warning = 'warning',
+  danger = 'danger',
+}
+
+type StyledButtonProps = TouchableOpacityProps & {
   title: string;
-  style?: ViewStyle,
+  buttonType?: ButtonTypes;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
-export class StyledButton extends React.Component<IProps> {
-  render() {
-    return (
-      <TouchableOpacity onPress={this.props.onPress}>
-        <View style={[styles.container, this.props.style]}>
-          <Text style={styles.text}>{this.props.title}</Text>
-        </View>
-      </TouchableOpacity>
-    )
-  }
-}
+export const StyledButton: FunctionComponent<StyledButtonProps> = ({ buttonType = ButtonTypes.success, ...props }) => (
+  <TouchableOpacity
+    onPress={props.onPress}
+    style={[styles.container, styles[buttonType], props.style]}
+  >
+    <Text
+      style={[styles.text, styles[`text${buttonType}`], props.textStyle]}>
+      {props.title}
+    </Text>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
     alignContent: 'center',
-  },
+    borderRadius: 16,
 
+    ...Effects.shadow,
+  },
   text: {
     textTransform: 'uppercase',
     textAlign: 'center',
     fontSize: 20,
-  }
+    color: Colors.baseTextInvertedColor,
+  },
+  ['text' + ButtonTypes.clear]: {
+    color: Colors.baseTextColor,
+  },
+
+  [ButtonTypes.success]: {
+    backgroundColor: Colors.successColor,
+  },
+
+  [ButtonTypes.positive]: {
+    backgroundColor: Colors.positiveColor,
+  },
+
+  [ButtonTypes.clear]: {
+
+  },
+
+  [ButtonTypes.warning]: {
+    backgroundColor: Colors.warningColor,
+  },
+
+  [ButtonTypes.danger]: {
+    backgroundColor: Colors.dangerColor,
+  },
 })

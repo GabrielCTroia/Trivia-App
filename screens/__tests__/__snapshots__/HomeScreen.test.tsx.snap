@@ -4,62 +4,85 @@ exports[`renders correctly 1`] = `
 <View
   style={
     Object {
-      "alignContent": "center",
-      "backgroundColor": "#cccccc",
+      "backgroundColor": "#F2C94C",
       "flex": 1,
-      "justifyContent": "space-between",
-      "paddingTop": 20,
     }
   }
 >
-  <View>
-    <Text
-      style={
-        Array [
-          Object {},
-          Object {
-            "fontSize": 25,
-            "fontWeight": "bold",
-            "textAlign": "center",
-          },
-        ]
+  <View
+    style={
+      Object {
+        "flex": 0.85,
+        "justifyContent": "space-between",
+        "paddingBottom": 20,
+        "paddingLeft": 20,
+        "paddingRight": 20,
+        "paddingTop": 78,
       }
-    >
-      Welcome to Trivia Challenge!
-    </Text>
-  </View>
-  <View>
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "row",
+            "fontFamily": "roboto-black",
+            "fontSize": 60,
+            "justifyContent": "center",
+          }
+        }
+      >
+        Welcome to
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#21357C",
+            "display": "flex",
+            "flexDirection": "row",
+            "fontFamily": "roboto-black",
+            "fontSize": 40,
+            "justifyContent": "center",
+          }
+        }
+      >
+        Trivia Challenge
+      </Text>
+    </View>
     <Text
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
-              "fontSize": 20,
-            },
-            Object {
-              "textAlign": "center",
-            },
-          ],
-        ]
+        Object {
+          "alignItems": "center",
+          "color": "#ffffff",
+          "display": "flex",
+          "flexDirection": "row",
+          "fontFamily": "roboto-regular",
+          "fontSize": 24,
+          "justifyContent": "center",
+        }
       }
     >
       You will be presented with 10 True or False questions.
     </Text>
-  </View>
-  <View>
     <Text
       style={
         Array [
-          Object {},
-          Array [
-            Object {
-              "fontSize": 20,
-            },
-            Object {
-              "textAlign": "center",
-            },
-          ],
+          Object {
+            "alignItems": "center",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "row",
+            "fontFamily": "roboto-regular",
+            "fontSize": 24,
+            "justifyContent": "center",
+          },
+          Object {
+            "textAlign": "center",
+          },
         ]
       }
     >
@@ -67,42 +90,66 @@ exports[`renders correctly 1`] = `
     </Text>
   </View>
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "opacity": 1,
+        "alignContent": "center",
+        "backgroundColor": "#ffffff",
+        "borderTopLeftRadius": 45,
+        "borderTopRightRadius": 45,
+        "bottom": 0,
+        "justifyContent": "space-evenly",
+        "left": 0,
+        "padding": 20,
+        "position": "absolute",
+        "right": 0,
+        "shadowColor": "#D0BD0F",
+        "shadowOffset": Object {
+          "height": 4,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
+        "shadowRadius": 10,
       }
     }
   >
     <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "alignContent": "center",
-            "padding": 10,
-          },
-          undefined,
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
     >
-      <Text
+      <View
         style={
-          Object {
-            "fontSize": 20,
-            "textAlign": "center",
-            "textTransform": "uppercase",
-          }
+          Array [
+            Object {
+              "alignContent": "center",
+              "padding": 10,
+            },
+            undefined,
+          ]
         }
       >
-        Begin
-      </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 20,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Begin
+        </Text>
+      </View>
     </View>
   </View>
 </View>

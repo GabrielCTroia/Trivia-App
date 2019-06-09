@@ -1,15 +1,17 @@
 import React from 'react';
 import R from 'ramda';
-import { StyleSheet, View, } from 'react-native';
-import { Constants } from 'expo';
-import * as Colors from '../styles/Colors';
+import { StyleSheet, View, Text, } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { QuestionBox } from '../components/QuestionBox';
 import { Question } from '../Api/Questions';
-import { CardStack } from '../components/CardStack';
-import { StyledButton } from '../components/buttons/StyledButton';
+import { CardStack } from '../components/SwipeableCards/CardStack';
+import { StyledButton, ButtonTypes } from '../components/buttons/StyledButton';
 import { AnsweredQuestion } from '../components/AnsweredQuestionItem';
 import { BlockText } from '../components/text/BlockText';
+import * as Colors from '../styles/Colors';
+import * as Layout from '../styles/Layout';
+import * as Typography from '../styles/Typography';
+import * as Effects from '../styles/Effects';
 
 
 export interface QuizScreenParams {
@@ -40,6 +42,25 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
     }
   }
 
+  // componentDidMount() {
+  //   // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
+  //   // Temporary solution: Manually annotate for now!
+  //   const questions: Question[] = this.props.navigation.state.params.questions || [];
+
+  //   this.setState({
+  //     quizEnded: true,
+
+  //     givenAnswersById: R.reduce((prev, next) => ({
+  //       ...prev,
+  //       [next.id]: true, 
+  //     }), {}, questions)
+  //   }, () => {
+  //     this.props.navigation.navigate('Results', {
+  //       answeredQuestions: this.getAnsweredQuestions(),
+  //     })
+  //   });
+  // }
+
   private answer(questionId: string, option: boolean) {
     // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
     // Temporary solution: Manually annotate for now!
@@ -64,23 +85,24 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
   }
 
   private renderQuestions() {
+    if (this.state.quizEnded) {
+      return null;
+    }
+
     // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
     // Temporary solution: Manually annotate for now!
     const questions: Question[] = this.props.navigation.state.params.questions || [];
 
     const onlyUnanswered = R.filter((q: Question) => this.state.givenAnswersById[q.id] === undefined);
 
-    const mapCardsToIds = R.map((q) => ({
-      id: q.id,
-      card: <QuestionBox question={q} />,
-    }), onlyUnanswered(questions));
-
-
     return <CardStack
       style={styles.questionsContainer}
-      cardWithIdMaps={mapCardsToIds}
+      items={onlyUnanswered(questions)}
+      keyExtractor={(item) => item.id}
+      renderItem={(item) => <QuestionBox question={item} />}
       onSwipeLeft={(id) => this.answer(id, false)}
       onSwipeRight={(id) => this.answer(id, true)}
+      totalItemsCount={questions.length}
     />;
   }
 
@@ -91,6 +113,7 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
 
     return <StyledButton
       title="See Results"
+      style={{ backgroundColor: Colors.yellowColor }}
       onPress={() => this.props.navigation.navigate('Results', {
         answeredQuestions: this.getAnsweredQuestions(),
       })}
@@ -104,11 +127,15 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
 
     return (
       <View style={styles.container}>
-        <View style={styles.quiz}>
-          <BlockText style={styles.header}>{topic}</BlockText>
-          <BlockText style={styles.subheader}>{subtopic}</BlockText>
-          {this.renderQuestions()}
-          {this.renderResultsButton()}
+        <View style={styles.main}>
+          <View>
+            <Text style={styles.header}>{topic}</Text>
+            <Text style={styles.subheader}>{subtopic}</Text>
+          </View>
+          <View style={styles.content}>
+            {this.renderQuestions()}
+            {this.renderResultsButton()}
+          </View>
         </View>
       </View>
     );
@@ -120,34 +147,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
-    alignContent: "center",
   },
-  quiz: {
-    flex: .9,
+  main: {
+    ...Layout.screenLayout,
+    flex: .85,
+
+    justifyContent: 'space-around',
+
     backgroundColor: Colors.foregroundColor,
-    paddingTop: Constants.statusBarHeight,
     borderBottomLeftRadius: 45,
     borderBottomRightRadius: 45,
+
+    ...Effects.shadow,
   },
   header: {
-    // textAlign: "center",
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#F2C94C',
+    ...Typography.headerText,
   },
   subheader: {
-    // textAlign: "center",
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#21357C',
+    ...Typography.subheaderText,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'space-around',
   },
   questionsContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: .5,
-
-    width: '80%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    flex: .3,
   }
 });

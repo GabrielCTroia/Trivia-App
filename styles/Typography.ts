@@ -1,7 +1,9 @@
 import { TextStyle, StyleSheet } from "react-native";
+import * as Colors from './Colors';
 
-export const extraLargeFontSize = 60;
-export const largeFontSize = 40;
+export const largestFontSize = 60;
+export const extraLargeFontSize = 40;
+export const largeFontSize = 32;
 export const baseFontSize = 16;
 
 export const baseText: TextStyle = {
@@ -16,15 +18,20 @@ export const baseText: TextStyle = {
 export const headerText: TextStyle = {
   ...baseText,
   fontSize: extraLargeFontSize,
-  fontWeight: 'bold',
   fontFamily: 'roboto-black',
+  color: Colors.headerTextColor,
+}
+
+export const headerTextInverted: TextStyle = {
+  ...headerText,
+  color: Colors.headerTextInvertedColor,
 }
 
 export const subheaderText: TextStyle = {
   ...baseText,
   fontSize: largeFontSize,
-  fontWeight: 'bold',
   fontFamily: 'roboto-black',
+  color: Colors.subheaderTextColor,
 }
 
 export const centeredText: TextStyle = {

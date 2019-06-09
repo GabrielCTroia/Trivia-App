@@ -13,5 +13,5 @@ export const screenLayout = {
   flex: 1,
   paddingLeft: screenHorizontalPadding,
   paddingRight: screenHorizontalPadding,
-  paddingTop: Constants.statusBarHeight + headerHeight,
+  paddingTop: Constants.statusBarHeight + headerHeight + 30,
 }

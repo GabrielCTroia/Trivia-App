@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { H2 } from './text/H2';
-import { Paragraph } from './text/Paragraph';
+import { StyleSheet, View, Text } from 'react-native';
 import { Question } from '../Api/Questions';
+import * as Colors from '../styles/Colors';
+import * as Effects from '../styles/Effects';
+import * as Typography from '../styles/Typography';
+import { screenHorizontalPadding } from '../styles/Layout';
 
 export type QuestionBoxProps = {
   question: Question,
@@ -11,27 +13,27 @@ export type QuestionBoxProps = {
 export const QuestionBox: React.FunctionComponent<QuestionBoxProps> = (props) => {
   return (
     <View style={styles.container} >
-      <H2>Question</H2>
-      <Paragraph>
-        {props.question.title}
-      </Paragraph>
+      <Text style={styles.text}>{props.question.title}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
-
-    shadowColor: '#ededed',
-    shadowOffset: { width: 10, height: 10 },
-    shadowRadius: 10,
-    shadowOpacity: 1,
+    backgroundColor: Colors.yellowColor,
 
     flex: 1,
 
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+
+    borderRadius: 26,
+    padding: screenHorizontalPadding,
+    
   },
+  text: {
+    ...Typography.baseText,
+    color: Colors.baseTextInvertedColor,
+  }
 });

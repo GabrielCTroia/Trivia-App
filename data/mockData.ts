@@ -46,7 +46,7 @@ export const data = {
       "type": "boolean",
       "difficulty": "hard",
       "question": "Counter Strike is not a shooter game",
-      "correct_answer": "True",
+      "correct_answer": "False",
       "incorrect_answers": [
         "False"
       ]
@@ -67,6 +67,16 @@ export const data = {
       "difficulty": "hard",
       "question": "Tony stark is Iron Man!",
       "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
+    {
+      "category": "Entertainment: Movies",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Avengers is a russian movies!!",
+      "correct_answer": "False",
       "incorrect_answers": [
         "False"
       ]

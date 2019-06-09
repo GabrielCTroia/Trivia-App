@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from "react";
 import { Question } from "../Api/Questions";
 import { View, Text, StyleSheet } from "react-native";
-import * as Colors from "../styles/Colors";
 import { Ionicons } from '@expo/vector-icons';
+import * as Colors from "../styles/Colors";
+import * as Effects from "../styles/Effects";
 
 
 export type AnsweredQuestion = Question & {
@@ -17,8 +18,8 @@ export const AnsweredQuestionItem: FunctionComponent<AnsweredQuestionItemProps> 
       <View style={styles.iconView}>
         {
           (props.givenAnswer === props.correctAnswer)
-            ? <Ionicons name="ios-checkmark" color={Colors.success} size={32} />
-            : <Ionicons name="ios-close" color={Colors.error} size={32} />
+            ? <Ionicons name="ios-checkmark" color={Colors.successColor} size={32} />
+            : <Ionicons name="ios-close" color={Colors.errorColor} size={32} />
         }
       </View>
       <View style={styles.content}>
@@ -30,7 +31,7 @@ export const AnsweredQuestionItem: FunctionComponent<AnsweredQuestionItemProps> 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.whiteColor,
+    backgroundColor: Colors.foregroundColor,
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 20,
@@ -41,10 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
 
-    shadowColor: '#D0BD0F',
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 10,
-    shadowOpacity: 1,
+    ...Effects.shadow,
   },
   iconView: {
     paddingRight: 16,

@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import * as Colors from '../styles/Colors';
-import { H2 } from '../components/text/H2';
+import { StyleSheet, View, Text } from 'react-native';
 import { NavigationScreenProp, FlatList } from 'react-navigation';
 import { AnsweredQuestionItem, AnsweredQuestion } from '../components/AnsweredQuestionItem';
-import { StyledButton } from '../components/buttons/StyledButton';
-import { Constants } from 'expo';
+import { StyledButton, ButtonTypes } from '../components/buttons/StyledButton';
+import * as Typography from '../styles/Typography';
+import * as Colors from '../styles/Colors';
+import * as Layout from '../styles/Layout';
 
 
 export interface ResultsScreenParams {
@@ -34,22 +34,24 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
 
     return (
       <View style={styles.container}>
-        {/* <View style={styles.quizOutro}></View> */}
-
         <View style={styles.main}>
-          <H2>You scored {calculateScore(answeredQuestions)}%</H2>
+          <Text style={Typography.headerTextInverted}>You scored {calculateScore(answeredQuestions)}%</Text>
 
           <FlatList
-            style={styles.questionsList}
             data={answeredQuestions}
             keyExtractor={(q) => q.id}
             renderItem={({ item }) => <AnsweredQuestionItem {...item} />}
+            ListFooterComponent={
+              <StyledButton
+                textStyle={styles.playAgainButtonText}
+                buttonType={ButtonTypes.clear}
+                title="Play Again"
+                onPress={() => { this.props.navigation.navigate('Home') }}
+              />
+            }
           />
 
-          <StyledButton
-            title="Play Again"
-            onPress={() => { this.props.navigation.navigate('Home') }}
-          />
+
         </View>
       </View>
     );
@@ -58,24 +60,14 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
 
 const styles = StyleSheet.create({
   container: {
+    ...Layout.screenLayout,
     backgroundColor: Colors.backgroundColor,
-    flex: 1,
-    alignContent: "center",
-    justifyContent: 'space-between',
-    paddingTop: Constants.statusBarHeight,
-  },
-  questionsList: {},
-  quizOutro: {
-    flex: .2,
-    backgroundColor: Colors.foregroundColor,
-    borderBottomLeftRadius: 45,
-    borderBottomRightRadius: 45,
-
-    alignContent: "center",
-    justifyContent: 'space-evenly',
   },
   main: {
     flex: 1,
     justifyContent: 'space-evenly',
+  },
+  playAgainButtonText: {
+    color: Colors.baseTextInvertedColor,
   }
 });

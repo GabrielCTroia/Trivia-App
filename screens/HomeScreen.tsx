@@ -7,11 +7,13 @@ import {
 
 import R from 'ramda';
 import * as Colors from '../styles/Colors';
-import { StyledButton } from '../components/buttons/StyledButton';
+import { StyledButton, ButtonType, ButtonTypes } from '../components/buttons/StyledButton';
 import { NavigationScreenProp } from 'react-navigation';
 import { getQuestionsByCategory, Question } from '../Api/Questions';
 import * as Typography from '../styles/Typography';
-import { screenLayout, screenVerticalPadding } from '../styles/Layout';
+import * as Layout from '../styles/Layout';
+import * as Effects from '../styles/Effects';
+import isEmpty from 'ramda/es/isEmpty';
 
 export interface HomeScreenProps {
   navigation: NavigationScreenProp<any, any>;
@@ -55,6 +57,21 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     });
   }
 
+  private showBeginButton() {
+    const categories = R.keys(this.state.questionsByCategories);
+
+    if (categories.length > 0) {
+      return null;
+    }
+
+    return (
+      <StyledButton
+        title="Begin"
+        onPress={() => { this.fetchData() }}
+      />
+    );
+  }
+
   private showCategories() {
     const categories = R.keys(this.state.questionsByCategories);
 
@@ -68,7 +85,9 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
           <StyledButton
             key={i}
             title={c.toString()}
+            buttonType={ButtonTypes.clear}
             onPress={() => this.navigateToQuizScreen(c.toString())}
+            textStyle={styles.categoryButtonText}
           />
         ))}
       </View>
@@ -92,10 +111,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
         </View>
 
         <View style={styles.quizIntro}>
-          <StyledButton
-            title="Begin"
-            onPress={() => { this.fetchData() }}
-          />
+          {this.showBeginButton()}
           {this.showCategories()}
         </View>
       </View>
@@ -110,8 +126,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundColor,
   },
   main: {
-    ...screenLayout,
-    paddingBottom: screenVerticalPadding,
+    ...Layout.screenLayout,
+    paddingBottom: Layout.screenVerticalPadding,
 
     justifyContent: 'space-between',
 
@@ -120,10 +136,12 @@ const styles = StyleSheet.create({
   header: {
     ...Typography.headerText,
     color: Colors.baseTextInvertedColor,
+    fontSize: Typography.largestFontSize,
   },
   subheader: {
     ...Typography.subheaderText,
     color: Colors.subheaderTextColor,
+    fontSize: Typography.extraLargeFontSize,
   },
   baseText: {
     ...Typography.baseText,
@@ -137,6 +155,9 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
 
+    paddingTop: 40,
+    paddingBottom: 100,
+
     backgroundColor: Colors.foregroundColor,
     padding: 20,
     borderTopLeftRadius: 45,
@@ -145,9 +166,10 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: 'space-evenly',
 
-    shadowColor: '#D0BD0F',
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 10,
-    shadowOpacity: 1,
-  }
+    ...Effects.shadow,
+  },
+
+  categoryButtonText: {
+    textTransform: 'none',
+  },
 });

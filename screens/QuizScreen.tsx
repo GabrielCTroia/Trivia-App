@@ -1,6 +1,6 @@
 import React from 'react';
 import R from 'ramda';
-import { StyleSheet, View, Text, } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { QuestionBox } from '../components/QuestionBox';
 import { Question } from '../Api/Questions';
@@ -99,7 +99,7 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
       style={styles.questionsContainer}
       items={onlyUnanswered(questions)}
       keyExtractor={(item) => item.id}
-      renderItem={(item) => <QuestionBox question={item} />}
+      renderItem={(item, index) => <QuestionBox question={item} index={index} />}
       onSwipeLeft={(id) => this.answer(id, false)}
       onSwipeRight={(id) => this.answer(id, true)}
       totalItemsCount={questions.length}
@@ -113,7 +113,7 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
 
     return <StyledButton
       title="See Results"
-      style={{ backgroundColor: Colors.yellowColor }}
+      buttonType={ButtonTypes.warning}
       onPress={() => this.props.navigation.navigate('Results', {
         answeredQuestions: this.getAnsweredQuestions(),
       })}
@@ -127,6 +127,7 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
 
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <View style={styles.main}>
           <View>
             <Text style={styles.header}>{topic}</Text>
@@ -155,10 +156,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
 
     backgroundColor: Colors.foregroundColor,
-    borderBottomLeftRadius: 45,
-    borderBottomRightRadius: 45,
-
-    ...Effects.shadow,
+    borderBottomLeftRadius: Layout.screenBorderRadius,
+    borderBottomRightRadius: Layout.screenBorderRadius,
   },
   header: {
     ...Typography.headerText,

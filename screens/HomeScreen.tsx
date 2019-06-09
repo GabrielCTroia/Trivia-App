@@ -3,17 +3,21 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 
 import R from 'ramda';
 import * as Colors from '../styles/Colors';
-import { StyledButton, ButtonType, ButtonTypes } from '../components/buttons/StyledButton';
+import { StyledButton, ButtonTypes } from '../components/buttons/StyledButton';
 import { NavigationScreenProp } from 'react-navigation';
 import { getQuestionsByCategory, Question } from '../Api/Questions';
 import * as Typography from '../styles/Typography';
 import * as Layout from '../styles/Layout';
 import * as Effects from '../styles/Effects';
-import isEmpty from 'ramda/es/isEmpty';
+import { FlatList } from 'react-native-gesture-handler';
+import { TouchableListItem } from '../components/List/TouchableListItem';
+// import { ListItem } from '../components/ListItem';
 
 export interface HomeScreenProps {
   navigation: NavigationScreenProp<any, any>;
@@ -36,11 +40,11 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     };
   }
 
-  // async componentDidMount() {
-  //   await this.fetchData();
+  async componentDidMount() {
+    // await this.fetchData();
 
-  //   this.navigateToQuizScreen(R.keys(this.state.questionsByCategories)[0].toString())
-  // }
+    // this.navigateToQuizScreen(R.keys(this.state.questionsByCategories)[0].toString())
+  }
 
   private async fetchData() {
     this.setState({
@@ -67,6 +71,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     return (
       <StyledButton
         title="Begin"
+        buttonType={ButtonTypes.warning}
         onPress={() => { this.fetchData() }}
       />
     );
@@ -81,15 +86,18 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
 
     return (
       <View>
-        {categories.map((c, i) => (
-          <StyledButton
-            key={i}
-            title={c.toString()}
-            buttonType={ButtonTypes.clear}
-            onPress={() => this.navigateToQuizScreen(c.toString())}
-            textStyle={styles.categoryButtonText}
-          />
-        ))}
+        <Text style={styles.categoriesListHeader}>Choose Category</Text>
+        <FlatList
+          style={styles.categoriesList}
+          data={categories}
+          keyExtractor={(_, i) => i.toString()}
+          renderItem={({ item }) => (
+            <TouchableListItem
+              content={item}
+              onPress={() => { this.navigateToQuizScreen(item) }}
+            />
+          )}
+        />
       </View>
     );
   }
@@ -97,6 +105,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <View style={styles.main}>
           <View>
             <Text style={styles.header}>Welcome to</Text>
@@ -117,7 +126,6 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -131,21 +139,22 @@ const styles = StyleSheet.create({
 
     justifyContent: 'space-between',
 
-    flex: .85,
+    flex: .8,
+    height: Layout.screenHeight - 120,
   },
   header: {
     ...Typography.headerText,
-    color: Colors.baseTextInvertedColor,
+    color: Colors.baseTextColorInverted,
     fontSize: Typography.largestFontSize,
   },
   subheader: {
     ...Typography.subheaderText,
-    color: Colors.subheaderTextColor,
+    color: Colors.subheaderTextColorInverted,
     fontSize: Typography.extraLargeFontSize,
   },
   baseText: {
     ...Typography.baseText,
-    color: Colors.baseTextInvertedColor,
+    color: Colors.baseTextColorInverted,
     fontSize: 24,
   },
 
@@ -155,21 +164,28 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
 
-    paddingTop: 40,
-    paddingBottom: 100,
+    paddingTop: Layout.insetPadding * 2,
+    paddingBottom: Layout.insetPadding * 2,
+    paddingLeft: Layout.insetPadding,
+    paddingRight: Layout.insetPadding,
 
     backgroundColor: Colors.foregroundColor,
-    padding: 20,
-    borderTopLeftRadius: 45,
-    borderTopRightRadius: 45,
+    borderTopLeftRadius: Layout.screenBorderRadius,
+    borderTopRightRadius: Layout.screenBorderRadius,
 
     alignContent: "center",
     justifyContent: 'space-evenly',
-
-    ...Effects.shadow,
   },
 
-  categoryButtonText: {
-    textTransform: 'none',
-  },
+  categoriesList: {},
+
+  categoriesListHeader: {
+    ...Typography.baseText,
+
+    fontSize: 19,
+    paddingBottom: 20,
+    color: Colors.baseTextColor,
+    fontWeight: 'bold',
+  }
+
 });

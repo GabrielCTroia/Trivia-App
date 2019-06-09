@@ -1,4 +1,4 @@
-export const darkBlueColor = '#21357C';
+export const darkBlueColor = '#4044C9';
 export const whiteColor = '#ffffff';
 export const yellowColor = '#F2C94C';
 
@@ -10,12 +10,15 @@ export const dangerColor = '#EB5757';
 export const errorColor = dangerColor;
 
 export const baseTextColor = '#828282';
-export const baseTextInvertedColor = whiteColor;
-export const headerTextColor = yellowColor;
-export const headerTextInvertedColor = whiteColor;
+export const baseTextColorInverted = whiteColor;
+export const headerTextColor = warningColor;
+export const headerTextColorInverted = whiteColor;
 export const subheaderTextColor = darkBlueColor;
+export const subheaderTextColorInverted = warningColor;
 
-export const backgroundColor = yellowColor;
+export const backgroundColor = darkBlueColor;
 export const foregroundColor = whiteColor;
 
 export const backgroundShadowColor = '#ACA729';
+
+export const lightShade = '#E0E0E0';

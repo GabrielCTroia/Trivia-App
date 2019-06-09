@@ -8,7 +8,6 @@ import {
   TextStyle,
 } from 'react-native';
 import * as Colors from '../../styles/Colors';
-import * as Effects from '../../styles/Effects';
 
 
 export enum ButtonTypes {
@@ -43,14 +42,12 @@ const styles = StyleSheet.create({
     padding: 10,
     alignContent: 'center',
     borderRadius: 16,
-
-    ...Effects.shadow,
   },
   text: {
     textTransform: 'uppercase',
     textAlign: 'center',
     fontSize: 20,
-    color: Colors.baseTextInvertedColor,
+    color: Colors.baseTextColorInverted,
   },
   ['text' + ButtonTypes.clear]: {
     color: Colors.baseTextColor,

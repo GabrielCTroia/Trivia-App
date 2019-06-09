@@ -24,13 +24,13 @@ export const headerText: TextStyle = {
 
 export const headerTextInverted: TextStyle = {
   ...headerText,
-  color: Colors.headerTextInvertedColor,
+  color: Colors.headerTextColorInverted,
 }
 
 export const subheaderText: TextStyle = {
   ...baseText,
   fontSize: largeFontSize,
-  fontFamily: 'roboto-black',
+  fontFamily: 'roboto-regular',
   color: Colors.subheaderTextColor,
 }
 

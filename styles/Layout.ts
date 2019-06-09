@@ -9,9 +9,13 @@ export const screenHorizontalPadding = 20;
 export const screenVerticalPadding = 20;
 export const headerHeight = 28;
 
+export const insetPadding = 20;
+
 export const screenLayout = {
   flex: 1,
   paddingLeft: screenHorizontalPadding,
   paddingRight: screenHorizontalPadding,
   paddingTop: Constants.statusBarHeight + headerHeight + 30,
 }
+
+export const screenBorderRadius = 45;

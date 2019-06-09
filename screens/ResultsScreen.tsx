@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { NavigationScreenProp, FlatList } from 'react-navigation';
+import { StyleSheet, View, Text, StatusBar } from 'react-native';
+import { NavigationScreenProp, FlatList, StackActions } from 'react-navigation';
 import { AnsweredQuestionItem, AnsweredQuestion } from '../components/AnsweredQuestionItem';
 import { StyledButton, ButtonTypes } from '../components/buttons/StyledButton';
 import * as Typography from '../styles/Typography';
 import * as Colors from '../styles/Colors';
 import * as Layout from '../styles/Layout';
+import { NavigationActions } from 'react-navigation';
 
 
 export interface ResultsScreenParams {
@@ -27,6 +28,14 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
     header: null,
   };
 
+  private resetNavigation() {
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Home' })],
+    });
+    this.props.navigation.dispatch(resetAction);
+  }
+
   render() {
     // TODO: For some reason the Params are not used/inferred from the react-navigation lib. Investigate further!
     // Temporary solution: Manually annotate for now!
@@ -34,8 +43,9 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
 
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <View style={styles.main}>
-          <Text style={Typography.headerTextInverted}>You scored {calculateScore(answeredQuestions)}%</Text>
+          <Text style={styles.header}>You scored {calculateScore(answeredQuestions)}%</Text>
 
           <FlatList
             data={answeredQuestions}
@@ -46,12 +56,10 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
                 textStyle={styles.playAgainButtonText}
                 buttonType={ButtonTypes.clear}
                 title="Play Again"
-                onPress={() => { this.props.navigation.navigate('Home') }}
+                onPress={() => { this.resetNavigation() }}
               />
             }
           />
-
-
         </View>
       </View>
     );
@@ -63,11 +71,16 @@ const styles = StyleSheet.create({
     ...Layout.screenLayout,
     backgroundColor: Colors.backgroundColor,
   },
+  header: {
+    ...Typography.headerTextInverted,
+    paddingBottom: 60,
+  },
   main: {
     flex: 1,
     justifyContent: 'space-evenly',
   },
   playAgainButtonText: {
-    color: Colors.baseTextInvertedColor,
+    color: Colors.baseTextColorInverted,
+    paddingBottom: Layout.screenVerticalPadding,
   }
 });

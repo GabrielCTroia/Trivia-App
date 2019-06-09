@@ -1,9 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { Question } from "../Api/Questions";
 import { View, Text, StyleSheet } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
 import * as Colors from "../styles/Colors";
-import * as Effects from "../styles/Effects";
+import { Ionicons } from '@expo/vector-icons';
 
 
 export type AnsweredQuestion = Question & {
@@ -23,7 +22,7 @@ export const AnsweredQuestionItem: FunctionComponent<AnsweredQuestionItemProps> 
         }
       </View>
       <View style={styles.content}>
-        <Text>{props.title}</Text>
+        <Text style={styles.contentText}>{props.title}</Text>
       </View>
     </View>
   );
@@ -41,16 +40,20 @@ const styles = StyleSheet.create({
 
     flex: 1,
     flexDirection: 'row',
-
-    ...Effects.shadow,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   iconView: {
     paddingRight: 16,
     justifyContent: 'center',
+    alignContent: 'center',
   },
   content: {
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
+  },
+  contentText: {
+    color: Colors.baseTextColor,
   }
 });

@@ -81,5 +81,15 @@ export const data = {
         "False"
       ]
     },
+    {
+      "category": "Entertainment: Music",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Avengers is a russian movies!!",
+      "correct_answer": "False",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
   ]
 };

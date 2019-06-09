@@ -11,16 +11,19 @@ export type CardStackProps<T extends { [key: string]: any } = {}> = ViewProps & 
   keyExtractor: (item: T) => string;
   renderItem: (item: T) => React.ReactElement | null;
 
-  onSwipeLeft?: (cardId: string) => void,
-  onSwipeRight?: (cardId: string) => void,
-  onEnd?: () => void,
+  onSwipeLeft?: (cardId: string) => void;
+  onSwipeRight?: (cardId: string) => void;
+  onEnd?: () => void;
+
+  // This is here only because CardStack doesn't implement it's own indexing
+  totalItemsCount: number;
 }
 
 export function CardStack<T>({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = noop, ...props }: CardStackProps<T>) {
-  const [cardsLeftCount, setCardsLeftCount] = useState(props.items.length - 1);
+  // const [count, setCount] = useState(props.items.length - 1);
 
   const onSwipe = (dir: 'left' | 'right', id: string) => {
-    setCardsLeftCount((prev) => prev - 1);
+    // setCount((prev) => prev + 1);
 
     if (dir === 'left') {
       onSwipeLeft(id);
@@ -28,9 +31,11 @@ export function CardStack<T>({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = 
       onSwipeRight(id);
     }
 
-    if (cardsLeftCount === 0) {
-      onEnd();
-    }
+    // if (cardsLeftCount === 0) {
+    //   onEnd();
+    // }
+
+
   }
 
   // Limit the number of items rendered at once
@@ -38,10 +43,12 @@ export function CardStack<T>({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = 
 
   return (
     <View style={[styles.container, props.style]}>
-      {firstItems.reverse().map((item) => {
+      {firstItems.reverse().map((item, index) => {
         const key = props.keyExtractor(item);
+        const styleName = (index === 0) ? 'backCard' : 'foreCard';
         return (
           <Card
+            style={(firstItems.length > 1) ? styles[styleName] : styles['foreCard']}
             key={key}
             onSwipeLeft={() => onSwipe('left', key)}
             onSwipeRight={() => onSwipe('right', key)}
@@ -56,4 +63,20 @@ export function CardStack<T>({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = 
 
 const styles = StyleSheet.create({
   container: {},
+  foreCard: {
+    shadowColor: '#000',
+    shadowOffset: { width: 15, height: 10 },
+    shadowRadius: 10,
+    shadowOpacity: .1,
+  },
+  backCard: {
+    top: 20,
+    width: '86%',
+    left: '7%',
+
+    shadowColor: '#F0E7CB',
+    shadowOffset: { width: 15, height: 15 },
+    shadowRadius: 10,
+    shadowOpacity: 1,
+  },
 });

@@ -89,14 +89,14 @@ export class Card extends React.Component<CardProps, State> {
         inputRange: [-150, 0, 150],
         outputRange: ["-20deg", "0deg", "20deg"]
       }),
-      opacity: pan.x.interpolate({ inputRange: [-250, 0, 250], outputRange: [0, 1, 0] })
+      opacity: pan.x.interpolate({ inputRange: [-250, 0, 250], outputRange: [.7, 1, .7] })
     };
   }
 
   render() {
     return (
       <Animated.View
-        style={[this.getAnimatedStyle(), styles.container]}
+        style={[this.getAnimatedStyle(), styles.container, this.props.style]}
         {...this.panResponder.panHandlers}
       >
         {this.props.children}

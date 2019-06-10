@@ -1,4 +1,3 @@
-import { fetch } from '../data/fetch';
 import R from 'ramda';
 import md5 from 'md5';
 
@@ -33,7 +32,15 @@ const normalize = (raw: any): Question => {
   }
 };
 
-export const getQuestions = () => fetch().then(R.map(normalize))
+export const getQuestions = () => fetch('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean', {
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
+  .then((response) => response.json())
+  .then(({ results }: any) => results)
+  .then(R.map(normalize));
 
 const groupQuestionsByCategory = (questions: Question[]) => R.groupBy<Question>((q) => q.category, questions)
 

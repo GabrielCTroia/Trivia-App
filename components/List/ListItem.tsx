@@ -1,7 +1,6 @@
-import React, { FunctionComponent, ReactElement } from "react";
-import { View, StyleSheet, ViewProps, Text } from "react-native";
-import * as Colors from "../../styles/Colors";
-import * as Effects from "../../styles/Effects";
+import React, { FunctionComponent, ReactElement } from 'react';
+import { View, StyleSheet, ViewProps, Text } from 'react-native';
+import * as Colors from '../../styles/Colors';
 
 
 export type ListItemProps = ViewProps & {
@@ -28,21 +27,17 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderColor: Colors.lightShade,
     borderBottomWidth: 1,
-
     flex: 1,
     flexDirection: 'row',
   },
-
   leftSide: {
     flex: .2,
   },
-
   content: {
     flex: 1,
     justifyContent: 'center',
     color: Colors.baseTextColor,
   },
-
   rightSide: {
     flex: .1,
     alignItems: 'flex-end',

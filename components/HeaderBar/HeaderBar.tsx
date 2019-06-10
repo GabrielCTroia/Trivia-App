@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import * as Colors from '../../styles/Colors';
+import React, { FunctionComponent } from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import * as NHooks from 'react-navigation-hooks';
+import * as Colors from '../../styles/Colors';
+import * as NavigationHooks from 'react-navigation-hooks';
 
 
 export type HeaderBarProps = {
@@ -10,7 +10,7 @@ export type HeaderBarProps = {
 }
 
 export const HeaderBar: FunctionComponent<HeaderBarProps> = ({ type = 'dark' }) => {
-  const { goBack } = NHooks.useNavigation();
+  const { goBack } = NavigationHooks.useNavigation();
 
   return (
     <TouchableOpacity style={styles.headerBar} onPress={() => goBack()}>

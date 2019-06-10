@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Question } from '../Api/Questions';
-import * as Colors from '../styles/Colors';
-import * as Typography from '../styles/Typography';
 import { screenHorizontalPadding } from '../styles/Layout';
+import * as Typography from '../styles/Typography';
+import * as Colors from '../styles/Colors';
+
 
 export type QuestionBoxProps = {
   index: number,
@@ -22,16 +23,12 @@ export const QuestionBox: React.FunctionComponent<QuestionBoxProps> = (props) =>
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.whiteColor,
-
+    borderRadius: 26,
+    padding: screenHorizontalPadding,
     flex: 1,
-
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-
-    borderRadius: 26,
-    padding: screenHorizontalPadding,
-    
     flexDirection: 'row',
   },
   tipText: {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Animated, PanResponder, ViewProps } from 'react-native';
+import { VoidFunction } from '../../util';
 
-type VoidFunction = () => void;
 
 export type CardProps = {
   onSwipeLeft: VoidFunction;
@@ -39,17 +39,15 @@ export class Card extends React.Component<CardProps, State> {
     this.state.pan.y.addListener(({ value }) => prevPanY = value);
 
     this.panResponder = PanResponder.create({
-      // onMoveShouldSetResponderCapture: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
-      onPanResponderGrant: (e, gestureState) => {
+      onPanResponderGrant: () => {
         this.state.pan.setOffset({ x: prevPanX, y: prevPanY });
         this.state.pan.setValue({ x: 0, y: 0 });
       },
       onPanResponderMove: Animated.event([
         null, { dx: this.state.pan.x, dy: this.state.pan.y }
       ]),
-      onPanResponderRelease: (e, { vx, vy }) => {
-        // this.state.pan.flattenOffset();
+      onPanResponderRelease: () => {
         if (prevPanX < -150) {
           Animated.spring(this.state.pan, {
             toValue: {
@@ -108,10 +106,9 @@ export class Card extends React.Component<CardProps, State> {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-
-    width: '100%',
-    height: '100%',
     left: 0,
     top: 0,
+    width: '100%',
+    height: '100%',
   },
 });

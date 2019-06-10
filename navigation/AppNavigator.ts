@@ -1,8 +1,8 @@
 import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
-import { HomeScreen } from '../screens/HomeScreen';
-import { QuizScreen } from '../screens/QuizScreen';
+import { HomeScreen } from '../screens/HomeScreen/HomeScreen';
+import { QuizScreen } from '../screens/QuizScreen/QuizScreen';
 import { Easing, Animated } from 'react-native';
-import { ResultsScreen } from '../screens/ResultsScreen';
+import { ResultsScreen } from '../screens/ResultsScreen/ResultsScreen';
 
 const iosTransitionSpec = {
   duration: 500,

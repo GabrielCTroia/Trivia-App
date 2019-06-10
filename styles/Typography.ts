@@ -15,6 +15,10 @@ export const baseText: TextStyle = {
   fontSize: baseFontSize,
 }
 
+export const boldText: TextStyle = {
+  fontFamily: 'roboto-bold',
+}
+
 export const headerText: TextStyle = {
   ...baseText,
   fontSize: extraLargeFontSize,

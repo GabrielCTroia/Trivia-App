@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import R from 'ramda';
-import { View, StyleSheet, ViewProps } from "react-native";
-import { Card } from "./Card";
-import { noop } from "../../util";
-import { ProgressBar } from "./ProgressBar";
-import * as Colors from "../../styles/Colors";
+import { View, StyleSheet, ViewProps } from 'react-native';
+import { Card } from './Card';
+import { noop } from '../../util';
+import { ProgressBar } from './ProgressBar';
+import * as Colors from '../../styles/Colors';
 
 
 export type CardStackProps<T extends { [key: string]: any } = {}> = ViewProps & {
@@ -64,6 +64,12 @@ export function CardStack<T>({ onSwipeLeft = noop, onSwipeRight = noop, onEnd = 
   );
 }
 
+const shadowStyle = {
+  shadowColor: '#ddd',
+  shadowOffset: { width: 0, height: 5 },
+  shadowRadius: 10,
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -78,9 +84,7 @@ const styles = StyleSheet.create({
     height: '80%',
   },
   foreCard: {
-    shadowColor: '#ddd',
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
+    ...shadowStyle,
     shadowOpacity: .7,
   },
   backCard: {
@@ -89,9 +93,7 @@ const styles = StyleSheet.create({
     width: '86%',
     opacity: .9,
 
-    shadowColor: '#ddd',
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
+    ...shadowStyle,
     shadowOpacity: .5,
   },
   progressBar: {

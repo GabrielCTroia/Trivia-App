@@ -15,6 +15,8 @@ export interface HomeScreenProps {
 
 interface State {
   questionsByCategories: { [k: string]: Question[] },
+  fetching: boolean;
+  fetchError: boolean;
 }
 
 export class HomeScreen extends React.Component<HomeScreenProps, State> {
@@ -27,13 +29,28 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
 
     this.state = {
       questionsByCategories: {},
+      fetching: false,
+      fetchError: false,
     };
   }
 
   private async fetchData() {
-    this.setState({
-      questionsByCategories: await getQuestionsByCategory(),
-    });
+    await this.setState({ fetching: true });
+
+    getQuestionsByCategory()
+      .then((questionsByCategories) => {
+        this.setState({
+          fetching: false,
+          questionsByCategories,
+          fetchError: false,
+        });
+      })
+      .catch(() => {
+        this.setState({
+          fetching: false,
+          fetchError: true,
+        });
+      });
   }
 
   private navigateToQuizScreen(category: string) {
@@ -57,7 +74,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
         title="Begin"
         buttonType={ButtonTypes.warning}
         buttonFit="full"
-        onPress={() => { this.fetchData() }}
+        onPress={() => { this.state.fetching || this.fetchData() }}
       />
     );
   }
@@ -75,6 +92,20 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
         onPress={(item) => this.navigateToQuizScreen(item)}
       />
     );
+  }
+
+  private showFetchError() {
+    if (!this.state.fetchError || this.state.fetching) {
+      return null;
+    }
+
+    return (
+      <View style={styles.error}>
+        <Text style={styles.errorText}>
+          There was a Network Error. Please try again!
+        </Text>
+      </View>
+    )
   }
 
   render() {
@@ -100,6 +131,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
         <View style={styles.quizIntro}>
           {this.showBeginButton()}
           {this.showCategories()}
+          {this.showFetchError()}
         </View>
       </View>
     );
@@ -153,4 +185,11 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: 'space-evenly',
   },
+  error: {
+    paddingTop: 20,
+  },
+  errorText: {
+    ...Typography.errorText,
+    textAlign: 'center',
+  }
 });

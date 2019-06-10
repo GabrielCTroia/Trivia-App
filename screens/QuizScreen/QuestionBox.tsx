@@ -4,6 +4,7 @@ import { Question } from '../../Api/Questions';
 import { screenHorizontalPadding } from '../../styles/Layout';
 import * as Typography from '../../styles/Typography';
 import * as Colors from '../../styles/Colors';
+import HTML from 'react-native-render-html';
 
 
 export type QuestionBoxProps = {
@@ -15,7 +16,11 @@ export const QuestionBox: React.FunctionComponent<QuestionBoxProps> = (props) =>
   return (
     <View style={styles.container} >
       <Text style={styles.tipText}>{props.index}</Text>
-      <Text style={styles.text}>{props.question.title}</Text>
+      <View style={styles.htmlContainer}>
+        <HTML
+          html={props.question.title}
+          baseFontStyle={styles.text} />
+      </View>
     </View>
   )
 }
@@ -42,6 +47,8 @@ const styles = StyleSheet.create({
     ...Typography.baseText,
     color: Colors.baseTextColor,
     flex: 1,
+  },
+  htmlContainer: {
     paddingLeft: 10,
   }
 });

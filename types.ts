@@ -4,3 +4,5 @@
  */
 
 declare module 'react-navigation-hooks';
+
+declare module 'react-native-render-html';

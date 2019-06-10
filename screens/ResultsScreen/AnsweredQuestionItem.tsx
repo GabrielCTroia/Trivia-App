@@ -3,7 +3,7 @@ import { Question } from '../../Api/Questions';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Colors from '../../styles/Colors';
-
+import HTML from 'react-native-render-html';
 
 export type AnsweredQuestion = Question & {
   givenAnswer: boolean;
@@ -22,7 +22,7 @@ export const AnsweredQuestionItem: FunctionComponent<AnsweredQuestionItemProps> 
         }
       </View>
       <View style={styles.content}>
-        <Text style={styles.contentText}>{props.title}</Text>
+        <HTML html={props.title} baseFontStyle={styles.contentText} />
       </View>
     </View>
   );

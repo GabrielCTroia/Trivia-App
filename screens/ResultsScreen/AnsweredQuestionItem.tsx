@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
-import { Question } from "../Api/Questions";
-import { View, Text, StyleSheet } from "react-native";
-import * as Colors from "../styles/Colors";
+import React, { FunctionComponent } from 'react';
+import { Question } from '../../Api/Questions';
+import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Colors from '../../styles/Colors';
 
 
 export type AnsweredQuestion = Question & {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, StatusBar } from 'react-native';
 import { NavigationScreenProp, FlatList, StackActions } from 'react-navigation';
-import { AnsweredQuestionItem, AnsweredQuestion } from '../components/AnsweredQuestionItem';
-import { StyledButton, ButtonTypes } from '../components/buttons/StyledButton';
-import * as Typography from '../styles/Typography';
-import * as Colors from '../styles/Colors';
-import * as Layout from '../styles/Layout';
+import { AnsweredQuestionItem, AnsweredQuestion } from './AnsweredQuestionItem';
+import { StyledButton, ButtonTypes } from '../../components/buttons/StyledButton';
 import { NavigationActions } from 'react-navigation';
-import { HeaderBar } from '../components/HeaderBar/HeaderBar';
+import { HeaderBar } from '../../components/HeaderBar/HeaderBar';
+import * as Colors from '../../styles/Colors';
+import * as Layout from '../../styles/Layout';
+import * as Typography from '../../styles/Typography';
 
 
 export interface ResultsScreenParams {

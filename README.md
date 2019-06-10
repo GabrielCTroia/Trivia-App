@@ -8,9 +8,9 @@ For the UI I used Figma and for Project Management this Trello [board](https://t
 
 ### Global Dependencies
 
-- node
-- typescript
-- expo & expo-cli
+- node v12
+- typescript v3.5
+- expo v33.0
 - Xcode (optional)
 - iPhone
 

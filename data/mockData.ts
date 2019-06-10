@@ -52,40 +52,50 @@ export const data = {
       ]
     },
     {
-      "category": "Entertainment: Video Games",
+      "category": "Books: Science Fiction",
       "type": "boolean",
       "difficulty": "hard",
-      "question": "You can fly in FortNight",
-      "correct_answer": "True",
-      "incorrect_answers": [
-        "False"
-      ]
-    },
-    {
-      "category": "Entertainment: Movies",
-      "type": "boolean",
-      "difficulty": "hard",
-      "question": "Tony stark is Iron Man!",
-      "correct_answer": "True",
-      "incorrect_answers": [
-        "False"
-      ]
-    },
-    {
-      "category": "Entertainment: Movies",
-      "type": "boolean",
-      "difficulty": "hard",
-      "question": "Avengers is a russian movies!!",
+      "question": "Isaac Asimov wrote Dune",
       "correct_answer": "False",
       "incorrect_answers": [
         "False"
       ]
     },
     {
-      "category": "Entertainment: Music",
+      "category": "Books: Science Fiction",
       "type": "boolean",
       "difficulty": "hard",
-      "question": "Avengers is a russian movies!!",
+      "question": "Malachi Constant is a character created by Kurt Vonnegut",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
+    {
+      "category": "School: Geography",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Budapest is a European City!",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
+    {
+      "category": "School: Geography",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Kathmandu is the world's highest capital!",
+      "correct_answer": "False",
+      "incorrect_answers": [
+        "False"
+      ]
+    },
+    {
+      "category": "School: Geography",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Bolivia is a country in Africa!",
       "correct_answer": "False",
       "incorrect_answers": [
         "False"

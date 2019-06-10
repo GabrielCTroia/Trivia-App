@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Question } from '../Api/Questions';
 import * as Colors from '../styles/Colors';
-import * as Effects from '../styles/Effects';
 import * as Typography from '../styles/Typography';
 import { screenHorizontalPadding } from '../styles/Layout';
 
@@ -14,7 +13,7 @@ export type QuestionBoxProps = {
 export const QuestionBox: React.FunctionComponent<QuestionBoxProps> = (props) => {
   return (
     <View style={styles.container} >
-      <Text style={styles.tipText}>Q{props.index}</Text>
+      <Text style={styles.tipText}>{props.index}</Text>
       <Text style={styles.text}>{props.question.title}</Text>
     </View>
   )

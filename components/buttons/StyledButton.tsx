@@ -23,19 +23,21 @@ type StyledButtonProps = TouchableOpacityProps & {
   buttonType?: ButtonTypes;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  buttonFit?: 'full' | 'inline',
 }
 
-export const StyledButton: FunctionComponent<StyledButtonProps> = ({ buttonType = ButtonTypes.success, ...props }) => (
-  <TouchableOpacity
-    onPress={props.onPress}
-    style={[styles.container, styles[buttonType], props.style]}
-  >
-    <Text
-      style={[styles.text, styles[`text${buttonType}`], props.textStyle]}>
-      {props.title}
-    </Text>
-  </TouchableOpacity>
-);
+export const StyledButton: FunctionComponent<StyledButtonProps> =
+  ({ buttonType = ButtonTypes.success, buttonFit = 'inline', ...props }) => (
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[styles.container, styles[buttonType], styles[buttonFit], props.style]}
+    >
+      <Text
+        style={[styles.text, styles[`text${buttonType}`], props.textStyle]}>
+        {props.title}
+      </Text>
+    </TouchableOpacity>
+  );
 
 const styles = StyleSheet.create({
   container: {
@@ -61,9 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.positiveColor,
   },
 
-  [ButtonTypes.clear]: {
-
-  },
+  [ButtonTypes.clear]: {},
 
   [ButtonTypes.warning]: {
     backgroundColor: Colors.warningColor,
@@ -71,5 +71,15 @@ const styles = StyleSheet.create({
 
   [ButtonTypes.danger]: {
     backgroundColor: Colors.dangerColor,
+  },
+
+  full: {},
+
+  inline: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 })

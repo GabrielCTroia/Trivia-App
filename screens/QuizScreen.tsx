@@ -7,11 +7,11 @@ import { Question } from '../Api/Questions';
 import { CardStack } from '../components/SwipeableCards/CardStack';
 import { StyledButton, ButtonTypes } from '../components/buttons/StyledButton';
 import { AnsweredQuestion } from '../components/AnsweredQuestionItem';
-import { BlockText } from '../components/text/BlockText';
+import { HeaderBar } from '../components/HeaderBar/HeaderBar';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Colors from '../styles/Colors';
 import * as Layout from '../styles/Layout';
 import * as Typography from '../styles/Typography';
-import * as Effects from '../styles/Effects';
 
 
 export interface QuizScreenParams {
@@ -41,25 +41,6 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
       quizEnded: false,
     }
   }
-
-  // componentDidMount() {
-  //   // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
-  //   // Temporary solution: Manually annotate for now!
-  //   const questions: Question[] = this.props.navigation.state.params.questions || [];
-
-  //   this.setState({
-  //     quizEnded: true,
-
-  //     givenAnswersById: R.reduce((prev, next) => ({
-  //       ...prev,
-  //       [next.id]: true, 
-  //     }), {}, questions)
-  //   }, () => {
-  //     this.props.navigation.navigate('Results', {
-  //       answeredQuestions: this.getAnsweredQuestions(),
-  //     })
-  //   });
-  // }
 
   private answer(questionId: string, option: boolean) {
     // TODO: For some reason the QuizScreenParams are not used/inferred from the react-navigation lib. Investigate further!
@@ -95,15 +76,33 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
 
     const onlyUnanswered = R.filter((q: Question) => this.state.givenAnswersById[q.id] === undefined);
 
-    return <CardStack
-      style={styles.questionsContainer}
-      items={onlyUnanswered(questions)}
-      keyExtractor={(item) => item.id}
-      renderItem={(item, index) => <QuestionBox question={item} index={index} />}
-      onSwipeLeft={(id) => this.answer(id, false)}
-      onSwipeRight={(id) => this.answer(id, true)}
-      totalItemsCount={questions.length}
-    />;
+    return (
+      <View style={styles.questionsContainer}>
+        <View style={styles.tutorial}>
+          <View style={styles.tutorialTextContainer}>
+            <Text style={styles.tutorialText}>FALSE</Text>
+          </View>
+          <View style={styles.swipeTipContainer}>
+            <MaterialCommunityIcons
+              style={styles.swipeTip}
+              name="gesture-swipe-horizontal"
+              color={Colors.lightShade}
+            />
+          </View>
+          <View style={styles.tutorialTextContainer}>
+            <Text style={styles.tutorialText}>TRUE</Text>
+          </View>
+        </View>
+        <CardStack
+          items={onlyUnanswered(questions)}
+          keyExtractor={(item) => item.id}
+          renderItem={(item, index) => <QuestionBox question={item} index={index} />}
+          onSwipeLeft={(id) => this.answer(id, false)}
+          onSwipeRight={(id) => this.answer(id, true)}
+          totalItemsCount={questions.length}
+        />
+      </View>
+    );
   }
 
   private renderResultsButton() {
@@ -128,14 +127,17 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
-        <View style={styles.main}>
+        <View style={styles.screen}>
           <View>
+            <HeaderBar />
             <Text style={styles.header}>{topic}</Text>
             <Text style={styles.subheader}>{subtopic}</Text>
           </View>
-          <View style={styles.content}>
-            {this.renderQuestions()}
-            {this.renderResultsButton()}
+          <View style={styles.main}>
+            <View style={styles.content}>
+              {this.renderQuestions()}
+              {this.renderResultsButton()}
+            </View>
           </View>
         </View>
       </View>
@@ -149,15 +151,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backgroundColor,
   },
-  main: {
+  screen: {
     ...Layout.screenLayout,
-    flex: .85,
-
-    justifyContent: 'space-around',
+    flex: .92,
 
     backgroundColor: Colors.foregroundColor,
     borderBottomLeftRadius: Layout.screenBorderRadius,
     borderBottomRightRadius: Layout.screenBorderRadius,
+  },
+  main: {
+    flex: 1,
+    justifyContent: 'center',
   },
   header: {
     ...Typography.headerText,
@@ -166,12 +170,29 @@ const styles = StyleSheet.create({
     ...Typography.subheaderText,
   },
   content: {
-    flex: 1,
+    height: Layout.screenHeight / 2,
     justifyContent: 'space-around',
   },
   questionsContainer: {
-    alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
-    flex: .3,
-  }
+  },
+  tutorial: {
+    flex: .4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  swipeTipContainer: {
+    justifyContent: 'center',
+  },
+  swipeTip: {
+    fontSize: 80,
+  },
+  tutorialTextContainer: {
+    justifyContent: 'center',
+  },
+  tutorialText: {
+    ...Typography.baseText,
+    color: Colors.baseTextColor,
+  },
 });

@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 
@@ -14,10 +13,9 @@ import { NavigationScreenProp } from 'react-navigation';
 import { getQuestionsByCategory, Question } from '../Api/Questions';
 import * as Typography from '../styles/Typography';
 import * as Layout from '../styles/Layout';
-import * as Effects from '../styles/Effects';
 import { FlatList } from 'react-native-gesture-handler';
 import { TouchableListItem } from '../components/List/TouchableListItem';
-// import { ListItem } from '../components/ListItem';
+
 
 export interface HomeScreenProps {
   navigation: NavigationScreenProp<any, any>;
@@ -38,12 +36,6 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
     this.state = {
       questionsByCategories: {},
     };
-  }
-
-  async componentDidMount() {
-    // await this.fetchData();
-
-    // this.navigateToQuizScreen(R.keys(this.state.questionsByCategories)[0].toString())
   }
 
   private async fetchData() {
@@ -72,6 +64,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
       <StyledButton
         title="Begin"
         buttonType={ButtonTypes.warning}
+        buttonFit="full"
         onPress={() => { this.fetchData() }}
       />
     );
@@ -111,12 +104,18 @@ export class HomeScreen extends React.Component<HomeScreenProps, State> {
             <Text style={styles.header}>Welcome to</Text>
             <Text style={styles.subheader}>Trivia Challenge</Text>
           </View>
-          <Text style={styles.baseText}>
-            You will be presented with 10 True or False questions.
-          </Text>
-          <Text style={[styles.baseText, Typography.centeredText]}>
-            Can you score 100%?
-          </Text>
+
+          <View style={styles.tagLines}>
+            <Text style={styles.baseText}>
+              You will be presented with 10 True or False questions.
+              </Text>
+            <Text style={styles.baseText}>
+              Can you score 100%?
+            </Text>
+          </View>
+          {/* <Text style={[styles.baseText, Typography.centeredText]}>
+
+          </Text> */}
         </View>
 
         <View style={styles.quizIntro}>
@@ -134,13 +133,16 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundColor,
   },
   main: {
-    ...Layout.screenLayout,
+    ...Layout.screenLayoutWithoutHeader,
     paddingBottom: Layout.screenVerticalPadding,
 
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
 
     flex: .8,
     height: Layout.screenHeight - 120,
+  },
+  tagLines: {
+    paddingTop: 100,
   },
   header: {
     ...Typography.headerText,

@@ -1,4 +1,5 @@
 export const darkBlueColor = '#4044C9';
+export const darkBlueColorLighter = '#6367E8';
 export const whiteColor = '#ffffff';
 export const yellowColor = '#F2C94C';
 

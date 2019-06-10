@@ -7,6 +7,7 @@ import * as Typography from '../styles/Typography';
 import * as Colors from '../styles/Colors';
 import * as Layout from '../styles/Layout';
 import { NavigationActions } from 'react-navigation';
+import { HeaderBar } from '../components/HeaderBar/HeaderBar';
 
 
 export interface ResultsScreenParams {
@@ -45,6 +46,7 @@ export class ResultsScreen extends React.Component<ResultsScreenProps> {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={styles.main}>
+          <HeaderBar type="light" />
           <Text style={styles.header}>You scored {calculateScore(answeredQuestions)}%</Text>
 
           <FlatList

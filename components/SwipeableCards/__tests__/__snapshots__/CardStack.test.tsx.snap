@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "center",
+      "flex": 1,
+      "justifyContent": "flex-start",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-end",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      onMoveShouldSetResponder={[Function]}
+      onMoveShouldSetResponderCapture={[Function]}
+      onResponderEnd={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderReject={[Function]}
+      onResponderRelease={[Function]}
+      onResponderStart={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      style={
+        Object {
+          "height": "80%",
+          "left": "7%",
+          "opacity": 0.9,
+          "position": "absolute",
+          "rotate": "0deg",
+          "shadowColor": "#ddd",
+          "shadowOffset": Object {
+            "height": 5,
+            "width": 0,
+          },
+          "shadowOpacity": 0.5,
+          "shadowRadius": 10,
+          "top": 20,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+            Object {
+              "translateY": 0,
+            },
+          ],
+          "width": "86%",
+        }
+      }
+    >
+      <Text>
+        Item 1
+      </Text>
+    </View>
+    <View
+      onMoveShouldSetResponder={[Function]}
+      onMoveShouldSetResponderCapture={[Function]}
+      onResponderEnd={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderReject={[Function]}
+      onResponderRelease={[Function]}
+      onResponderStart={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      style={
+        Object {
+          "height": "80%",
+          "left": 0,
+          "opacity": 1,
+          "position": "absolute",
+          "rotate": "0deg",
+          "shadowColor": "#ddd",
+          "shadowOffset": Object {
+            "height": 5,
+            "width": 0,
+          },
+          "shadowOpacity": 0.7,
+          "shadowRadius": 10,
+          "top": 0,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+            Object {
+              "translateY": 0,
+            },
+          ],
+          "width": "100%",
+        }
+      }
+    >
+      <Text>
+        Item 1
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "height": 15,
+          "justifyContent": "center",
+        },
+        Object {
+          "justifyContent": "flex-end",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 50,
+              "height": 8,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 0.5,
+              "width": 8,
+            },
+            Object {
+              "height": 9.6,
+              "marginTop": -0.8,
+              "opacity": 1,
+              "width": 9.6,
+            },
+            Object {
+              "backgroundColor": "#F2994A",
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 50,
+              "height": 8,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 0.5,
+              "width": 8,
+            },
+            false,
+            Object {
+              "backgroundColor": "#F2994A",
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 50,
+              "height": 8,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 0.5,
+              "width": 8,
+            },
+            false,
+            Object {
+              "backgroundColor": "#F2994A",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

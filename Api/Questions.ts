@@ -1,6 +1,6 @@
-import { fetch } from "../data/fetch";
+import { fetch } from '../data/fetch';
 import R from 'ramda';
-import md5 from "md5";
+import md5 from 'md5';
 
 export type Question = {
   id: string,

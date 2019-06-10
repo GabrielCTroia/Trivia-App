@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Colors from '../../styles/Colors';
 import * as NavigationHooks from 'react-navigation-hooks';
+// import console = require('console');
 
 
 export type HeaderBarProps = {

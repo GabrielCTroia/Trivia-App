@@ -4,7 +4,7 @@ exports[`renders correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#F2C94C",
+      "backgroundColor": "#4044C9",
       "flex": 1,
     }
   }
@@ -12,12 +12,12 @@ exports[`renders correctly 1`] = `
   <View
     style={
       Object {
-        "flex": 0.85,
-        "justifyContent": "space-between",
+        "flex": 0.8,
+        "height": 1214,
         "paddingBottom": 20,
         "paddingLeft": 20,
         "paddingRight": 20,
-        "paddingTop": 78,
+        "paddingTop": 82,
       }
     }
   >
@@ -41,10 +41,10 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "color": "#21357C",
+            "color": "#F2994A",
             "display": "flex",
             "flexDirection": "row",
-            "fontFamily": "roboto-black",
+            "fontFamily": "roboto-regular",
             "fontSize": 40,
             "justifyContent": "center",
           }
@@ -53,24 +53,15 @@ exports[`renders correctly 1`] = `
         Trivia Challenge
       </Text>
     </View>
-    <Text
+    <View
       style={
         Object {
-          "alignItems": "center",
-          "color": "#ffffff",
-          "display": "flex",
-          "flexDirection": "row",
-          "fontFamily": "roboto-regular",
-          "fontSize": 24,
-          "justifyContent": "center",
+          "paddingTop": 100,
         }
       }
     >
-      You will be presented with 10 True or False questions.
-    </Text>
-    <Text
-      style={
-        Array [
+      <Text
+        style={
           Object {
             "alignItems": "center",
             "color": "#ffffff",
@@ -79,15 +70,32 @@ exports[`renders correctly 1`] = `
             "fontFamily": "roboto-regular",
             "fontSize": 24,
             "justifyContent": "center",
-          },
-          Object {
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      Can you score 100%?
-    </Text>
+          }
+        }
+      >
+        You will be presented with 10 True or False questions.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "color": "#ffffff",
+              "display": "flex",
+              "flexDirection": "row",
+              "fontFamily": "roboto-regular",
+              "fontSize": 24,
+              "justifyContent": "center",
+            },
+            Object {
+              "fontFamily": "roboto-bold",
+            },
+          ]
+        }
+      >
+        Can you score 100%?
+      </Text>
+    </View>
   </View>
   <View
     style={
@@ -99,16 +107,12 @@ exports[`renders correctly 1`] = `
         "bottom": 0,
         "justifyContent": "space-evenly",
         "left": 0,
-        "padding": 20,
+        "paddingBottom": 40,
+        "paddingLeft": 20,
+        "paddingRight": 20,
+        "paddingTop": 40,
         "position": "absolute",
         "right": 0,
-        "shadowColor": "#D0BD0F",
-        "shadowOffset": Object {
-          "height": 4,
-          "width": 0,
-        },
-        "shadowOpacity": 1,
-        "shadowRadius": 10,
       }
     }
   >
@@ -123,33 +127,30 @@ exports[`renders correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
+          "alignContent": "center",
+          "backgroundColor": "#F2994A",
+          "borderRadius": 16,
           "opacity": 1,
+          "padding": 10,
         }
       }
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignContent": "center",
-              "padding": 10,
+              "color": "#ffffff",
+              "fontSize": 20,
+              "textAlign": "center",
+              "textTransform": "uppercase",
             },
+            undefined,
             undefined,
           ]
         }
       >
-        <Text
-          style={
-            Object {
-              "fontSize": 20,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          Begin
-        </Text>
-      </View>
+        Begin
+      </Text>
     </View>
   </View>
 </View>

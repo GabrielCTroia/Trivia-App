@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#4044C9",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderBottomLeftRadius": 45,
+        "borderBottomRightRadius": 45,
+        "flex": 0.87,
+        "paddingLeft": 20,
+        "paddingRight": 20,
+        "paddingTop": 20,
+      }
+    }
+  >
+    <View>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "paddingBottom": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#F2994A",
+            "display": "flex",
+            "flexDirection": "row",
+            "fontFamily": "roboto-black",
+            "fontSize": 40,
+            "justifyContent": "center",
+          }
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#4044C9",
+            "display": "flex",
+            "flexDirection": "row",
+            "fontFamily": "roboto-regular",
+            "fontSize": 32,
+            "justifyContent": "center",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 667,
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 0.4,
+                "flexDirection": "row",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "color": "#828282",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "fontFamily": "roboto-regular",
+                    "fontSize": 16,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                FALSE
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text />
+            </View>
+            <View
+              style={
+                Object {
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "color": "#828282",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "fontFamily": "roboto-regular",
+                    "fontSize": 16,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                TRUE
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "flex": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "flex-end",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 15,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "justifyContent": "flex-end",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -22,6 +22,7 @@ it('renders correctly', () => {
 
   const tree = renderer.create(
     <CardStack
+      totalItemsCount={items.length}
       items={items}
       keyExtractor={(item) => String(item.id)}
       renderItem={(item) => <Text>{item.title}</Text>}

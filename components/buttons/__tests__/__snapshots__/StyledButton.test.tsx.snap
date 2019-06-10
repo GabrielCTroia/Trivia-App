@@ -12,32 +12,34 @@ exports[`renders correctly 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
+      "alignContent": "center",
+      "alignSelf": "center",
+      "backgroundColor": "#6FCF97",
+      "borderRadius": 16,
+      "display": "flex",
+      "flexDirection": "row",
       "opacity": 1,
+      "padding": 10,
+      "paddingLeft": 30,
+      "paddingRight": 30,
     }
   }
 >
-  <View
+  <Text
     style={
       Array [
         Object {
-          "alignContent": "center",
-          "padding": 10,
+          "color": "#ffffff",
+          "fontSize": 20,
+          "textAlign": "center",
+          "textTransform": "uppercase",
         },
+        undefined,
         undefined,
       ]
     }
   >
-    <Text
-      style={
-        Object {
-          "fontSize": 20,
-          "textAlign": "center",
-          "textTransform": "uppercase",
-        }
-      }
-    >
-      Snapshot Button
-    </Text>
-  </View>
+    Snapshot Button
+  </Text>
 </View>
 `;

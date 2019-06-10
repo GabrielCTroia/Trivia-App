@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#E0E0E0",
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingBottom": 10,
+        "paddingTop": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#828282",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    test
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with all sides 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#E0E0E0",
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingBottom": 10,
+        "paddingTop": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 0.2,
+      }
+    }
+  >
+    <Text>
+      left side test
+    </Text>
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#828282",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    test
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flex": 0.1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text>
+      right side test
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders correctly with left side 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#E0E0E0",
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingBottom": 10,
+        "paddingTop": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 0.2,
+      }
+    }
+  >
+    <Text>
+      left side test
+    </Text>
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#828282",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    test
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with right side 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#E0E0E0",
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingBottom": 10,
+        "paddingTop": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#828282",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    test
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flex": 0.1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text>
+      right side test
+    </Text>
+  </View>
+</View>
+`;

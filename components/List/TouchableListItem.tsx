@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { ViewProps } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem, ListItemProps } from './ListItem';
 import { Ionicons } from '@expo/vector-icons';
 import * as Colors from '../../styles/Colors';
 
 
-export type TouchableListItemProps = ViewProps & ListItemProps & {
+export type TouchableListItemProps = ListItemProps & {
   onPress: () => void;
 };
 

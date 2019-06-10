@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, StatusBar, } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { Question } from '../../Api/Questions';
 import { StyledButton, ButtonTypes } from '../../components/buttons/StyledButton';
-import { AnsweredQuestion } from '../../components/AnsweredQuestionItem';
+import { AnsweredQuestion } from '../ResultsScreen/AnsweredQuestionItem';
 import { HeaderBar } from '../../components/HeaderBar/HeaderBar';
 import * as Colors from '../../styles/Colors';
 import * as Layout from '../../styles/Layout';
@@ -69,16 +69,18 @@ export class QuizScreen extends React.Component<QuizScreenProps, State> {
       return null;
     }
 
+    const questions = getQuestionsFromNavParams(this.props);
+
     // Only render the unanswered questions.
     // In the future the QuestionInterction (CardStack) could do it's own optimization
     //  but for now this is enough. 
-    const onlyUnanswered = getQuestionsFromNavParams(this.props)
-      .filter((q) => this.state.givenAnswersById[q.id] === undefined);
+    const onlyUnanswered = questions.filter((q) => this.state.givenAnswersById[q.id] === undefined);
 
     return (
       <QuestionsInteraction
         questions={onlyUnanswered}
         onAnswer={(id, opt) => this.answer(id, opt)}
+        totalQuestions={questions.length}
       />
     );
   }
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
   },
   screen: {
     ...Layout.screenLayout,
-    flex: .92,
+    flex: .87,
 
     backgroundColor: Colors.foregroundColor,
     borderBottomLeftRadius: Layout.screenBorderRadius,

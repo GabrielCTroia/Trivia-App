@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { QuestionBox } from '../../components/QuestionBox';
+import { QuestionBox } from './QuestionBox';
 import { CardStack } from '../../components/SwipeableCards/CardStack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Typography from '../../styles/Typography';
@@ -10,6 +10,7 @@ import { Question } from '../../Api/Questions';
 export type QuestionsInteraction = {
   questions: Question[];
   onAnswer: (id: string, options: boolean) => void;
+  totalQuestions: number,
 };
 
 export const QuestionsInteraction: FunctionComponent<QuestionsInteraction> = (props) => {
@@ -36,7 +37,7 @@ export const QuestionsInteraction: FunctionComponent<QuestionsInteraction> = (pr
         renderItem={(item, index) => <QuestionBox question={item} index={index} />}
         onSwipeLeft={(id) => props.onAnswer(id, false)}
         onSwipeRight={(id) => props.onAnswer(id, true)}
-        totalItemsCount={props.questions.length}
+        totalItemsCount={props.totalQuestions}
       />
     </View>
   );

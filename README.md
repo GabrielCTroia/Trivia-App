@@ -1,4 +1,4 @@
-# G2i Trivia Game
+Trivia App
 
 ![](demo/showcase.gif)
 
